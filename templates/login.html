@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/logo.png') }}">
+  <title>Login - Medicate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='icons/logo.png') }}" alt="Medicate Logo">
+      </div>
+
+      <h2>Welcome back!!</h2>
+      <p class="subtitle">sign in to your account</p>
+
+      <form action="/login" method="post">
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" name="email" required>
+
+        <div class="password-container">
+          <label>Password</label>
+          <a href="#" class="forgot-link">Forgot Password?</a>
+        </div>
+        <input type="password" placeholder="Enter your password" name="password" required>
+
+        <button type="submit" class="login-btn">Log in</button>
+      </form>
+
+      <div class="divider">OR</div>
+      <div class="social-btns">
+        <button class="google-btn">
+          <img src="{{ url_for('static', filename='icons/google.svg') }}" alt="Google">
+          Continue with Google
+        </button>
+        <button class="facebook-btn">
+          <img src="{{ url_for('static', filename='icons/facebook.svg') }}" alt="Facebook">
+          Continue with Facebook
+          <button class="instagram-btn">
+            <img src="{{ url_for('static', filename='icons/instagram.svg') }}" alt="Instagram">
+            Continue with Instagram
+          </button>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>

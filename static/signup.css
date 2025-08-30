@@ -1,0 +1,456 @@
+/* SIGNUP PAGE ONLY: scenic background image */
+body.signup-bg {
+  background: url('/static/bg-signup.jpg') no-repeat center center fixed;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Main glass card */
+.container {
+  display: flex;
+  max-width: 800px;
+  min-height: 460px;
+  margin: 64px auto;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 10px 36px 0 rgba(49,168,226,0.22);
+  border: 1.5px solid rgba(255,255,255,0.20);
+}
+
+/* Left: CLEAR */
+.left {
+  flex: 1;
+  background: transparent;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 54px 38px 54px 44px;
+  border-right: 1px solid rgba(255,255,255,0.13);
+  /* No backdrop-filter, so it stays completely clear */
+}
+
+.left h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 13px;
+  color: #e2e2e2;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 18px rgba(49,168,226,0.18);
+  position: relative;
+  padding-bottom: 14px;
+}
+.left h1::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #13abb4 0%, #0d7be1 100%);
+  border-radius: 2px;
+}
+
+
+.left p {
+  font-size: 1.13rem;
+  font-weight: 400;
+  opacity: 0.92;
+}
+
+/* Right: soft frosted glass for readability */
+.right {
+  flex: 1;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 28px;
+  backdrop-filter: blur(10px) saturate(1.04);
+  -webkit-backdrop-filter: blur(10px) saturate(1.04);
+}
+
+/* Signup form styles */
+.signup-form {
+  width: 100%;
+}
+
+.signup-form h2 {
+  font-size: 2rem;
+  color: #2579ec;
+  margin-bottom: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: left;
+  text-shadow: 0 2px 8px rgba(49,168,226,0.11);
+}
+
+.signup-form input {
+  width: 100%;
+  padding: 13px 11px;
+  margin-bottom: 17px;
+  border: none;
+  border-radius: 7px;
+  background: rgba(255,255,255,0.36);
+  color: #2579ec;
+  font-size: 1.11rem;
+  box-shadow: 0 2px 10px rgba(49,168,226,0.04);
+  transition: box-shadow 0.15s;
+}
+
+.signup-form input:focus {
+  outline: 2px solid #1672ec;
+  background: rgba(255,255,255,0.65);
+  box-shadow: 0 4px 18px rgba(49,168,226,0.11);
+}
+
+.signup-form button {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(90deg, #49d6e7 0%, #1672ec 100%);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 1.07rem;
+  margin-top: 12px;
+  box-shadow: 0 4px 14px rgba(34,197,246, .13);
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.signup-form button:hover {
+  background: linear-gradient(90deg, #1672ec 0%, #49d6e7 100%);
+}
+
+.login-link {
+  margin-top: 19px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.login-link a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    max-width: 97vw;
+    margin: 28px auto;
+    border-radius: 15px;
+  }
+  .left, .right {
+    padding: 28px 12px;
+    border-radius: 0;
+    align-items: flex-start;
+    border: none;
+  }
+}
+@media (max-width: 600px) {
+  body, body.signup-bg { padding: 0 2vw; }
+}
+.form-social-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+
+/* Vertical "OR" divider WITH lines above/below */
+.divider-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 180px; /* Adjust as needed for form size */
+  margin: 0 14px;
+  position: relative;
+  min-width: 30px;
+}
+.divider-vertical:before,
+.divider-vertical:after {
+  content: "";
+  display: block;
+  width: 2px;
+  flex: 1 1 0;
+  background: #dde6f3;
+  margin: 10px 0;
+  border-radius: 2px;
+}
+.divider-vertical span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: #bbc4d0;
+  font-weight: 600;
+  font-size: 1.04rem;
+  background: rgba(255,255,255,0.70);
+  padding: 13px 0;
+  border-radius: 8px;
+  margin: 6px 0;
+  letter-spacing: 0.16em;
+  box-shadow: 0 1px 8px rgba(44,62,80,0.06);
+  min-width: 18px;
+  text-align: center;
+  z-index: 1;
+}
+
+.social-login-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin-left: 6px;
+}
+.social-login-vertical .social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.38rem;
+  color: #fff;
+  background: #d5e5f6;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  transition: transform 0.16s, box-shadow 0.16s;
+  margin: 0;
+}
+.social-login-vertical .google { background: #ea4335; }
+.social-login-vertical .twitter { background: #1da1f2; }
+.social-login-vertical .instagram {
+  background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 50%, #d6249f 80%, #285AEB 100%);
+}
+.social-login-vertical .social:hover {
+  transform: scale(1.13) translateY(-2px);
+  box-shadow: 0 6px 22px rgba(32,91,208,0.19);
+}
+
+/* Responsive stacking on mobile */
+@media (max-width: 900px) {
+  .form-social-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+.divider-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;           /* Center "OR" and lines vertically */
+  min-width: 30px;
+  min-height: 150px;                 /* Ensures enough room for lines */
+  position: relative;
+  margin: 0 16px;
+}
+
+.divider-vertical:before,
+.divider-vertical:after {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 48px;                      /* FORCE the line to show: you can adjust this (try 64px, 80px) */
+  background: #dde6f3;
+  border-radius: 3px;
+}
+
+.divider-vertical:before {
+  margin-bottom: 6px;
+}
+.divider-vertical:after {
+  margin-top: 6px;
+}
+
+.divider-vertical span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: #bbc4d0;
+  font-weight: 600;
+  font-size: 1.08rem;
+  background: rgba(255,255,255,0.85);
+  padding: 14px 0 14px 0;
+  border-radius: 8px;
+  margin: 4px 0;
+  letter-spacing: 0.13em;
+  box-shadow: 0 1px 8px rgba(44,62,80,0.05);
+  min-width: 20px;
+  text-align: center;
+  z-index: 1;
+}
+
+.social-login-vertical .social img {
+   width: 22px;
+   height: 22px;
+   filter: brightness(100%);
+    flex-direction: row;
+    gap: 14px;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+/* Social login buttons */
+body.login-bg {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #052c33;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.login-card {
+  background: #072b30 linear-gradient(135deg, #072b30 60%, #0e3d44 100%);
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(28,64,80,0.25);
+  padding: 38px 32px 34px 32px;
+  width: 340px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-title {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0 0 28px 0;
+  text-align: center;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  background: #143d43;
+  border-radius: 400px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  margin-bottom: 2px;
+  position: relative;
+  height: 46px;
+}
+
+.input-group input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.04rem;
+  font-family: inherit;
+  padding: 14px 12px;
+  border-radius: 400px;
+  outline: none;
+}
+
+.input-icon {
+  color: #fff;
+  font-size: 1.12rem;
+  min-width: 30px;
+  text-align: center;
+  opacity: 0.80;
+}
+
+.input-group .input-icon.right {
+  order: 2;
+  margin-left: 8px;
+  margin-right: -4px;
+}
+
+.input-group .input-icon:not(.right) {
+  margin-right: 8px;
+}
+
+.login-btn {
+  margin-top: 12px;
+  width: 100%;
+  border: none;
+  color: #fff;
+  font-size: 1.05rem;
+  font-family: 'Inter', Arial, sans-serif;
+  padding: 14px 0 14px 0;
+  border-radius: 130px;
+  background: #fff;
+  color: #223144;
+  font-weight: 700;
+  box-shadow: 0 2px 16px rgba(40,163,192,0.10);
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background .17s, color .17s;
+}
+
+.login-btn:hover {
+  background: #87e6f5;
+  color: #161616;
+}
+
+@media (max-width: 500px) {
+  .login-card {
+    padding: 27px 7vw 26px 7vw;
+    width: 98vw;
+    min-width: unset;
+  }
+  .login-title { font-size: 1.07rem; }
+  .input-group input { font-size: 0.99rem; }
+}
+/* Add icon button styles without removing any existing CSS */
+.social-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-btns button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  padding: 0;
+}
+
+.social-btns button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.social-btns img {
+  width: 26px;
+  height: 26px;
+}
+
+.google-btn {
+  background-color: #fff;
+}
+
+.facebook-btn {
+  background-color: #1877f2; /* Facebook official blue */
+}
+
+.instagram-btn {
+  background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 50%, #d6249f 80%, #285AEB 100%);
+}
+
+
