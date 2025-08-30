@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/logo.png') }}">
+  <title>Sign Up - Medicate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
+</head>
+
+<body class="signup-bg">
+  <div class="container">
+    <div class="left">
+      <h1>Let’s Get Started:</h1>
+      <p>Sign up to access personalized healthcare services.</p>
+    </div>
+
+    <div class="right social-right">
+      <div class="form-social-wrapper">
+        <form action="/signup" method="POST" class="signup-form">
+          <h2>Sign up</h2>
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="password" name="password" placeholder="Create Password" required>
+          <input type="password" name="confirm_password" placeholder="Repeat password" required>
+          <button type="submit">Sign up</button>
+          <p class="login-link">Already a member? <a href="/login">Sign in here</a></p>
+        </form>
+
+        <div class="divider-horizontal">
+          <span>OR</span>
+        </div>
+
+        <div class="social-btns">
+          <button class="google-btn">
+            <img src="{{ url_for('static', filename='icons/google.svg') }}" alt="Google">
+          </button>
+          <button class="facebook-btn">
+            <img src="{{ url_for('static', filename='icons/facebook.svg') }}" alt="Facebook">
+          </button>
+          <button class="instagram-btn">
+            <img src="{{ url_for('static', filename='icons/instagram.svg') }}" alt="Instagram">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

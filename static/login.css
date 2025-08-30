@@ -1,0 +1,157 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at center, #0f0f1b, #0b0b14);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 30px #7e4fff66;
+  backdrop-filter: blur(15px);
+  text-align: center;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 10px 0 5px;
+}
+
+
+.subtitle {
+  font-size: 0.9rem;
+  color: rgba(182, 182, 182, 0.7);  /* soft white */
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);  /* subtle glow */
+  margin-bottom: 30px;
+}
+
+
+label {
+  display: block;
+  text-align: left;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #cccccc;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: #1e1e2f;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+input::placeholder {
+  color: #888;
+}
+
+.password-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-link {
+  font-size: 0.8rem;
+  color: #9c6fff;
+  text-decoration: none;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+}
+
+.divider {
+  margin: 20px 0;
+  color: #aaa;
+  font-size: 0.8rem;
+  position: relative;
+}
+
+.social-btns button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.google-btn:hover {
+  background: #4285f4;
+}
+
+.twitter-btn {
+  background: #1da1f2;
+  border: none;
+}
+
+.google-btn {
+  background-color: #222;
+}
+.google-btn:hover {
+  background-color: #4285f4;
+}
+
+.facebook-btn {
+  background-color: #1877f2; /* Facebook official blue */
+}
+.facebook-btn:hover {
+  background-color: #165eab; /* Darker shade for hover */
+}
+.instagram-btn img {
+  width: 20px;
+  height: 20px;
+  filter: none;
+  background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 50%, #d6249f 80%, #285AEB 100%);
+}
+
+.instagram-btn:hover {
+   background-color: #0d8ddb;
+}
+.logo img {
+  width: 64px;       /* Adjust to 100px or 120px if needed */
+  height: auto;
+  margin-bottom: 10px;
+}
+
+
+
