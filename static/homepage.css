@@ -203,7 +203,7 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    padding-left: 10%; /* Shift content to the left */
+    padding-left: 2%; /* Shift content to the left */
     background-size: 75%; /* Make the background image smaller and non-covering */
     background-repeat: no-repeat;
     background-position: right center;
@@ -229,7 +229,7 @@
 
 .btn-primary {
     padding: 12px 24px;
-    background: #007bff;
+    background: #07d997;
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -244,8 +244,8 @@
 .btn-secondary {
     padding: 12px 24px;
     background: transparent;
-    border: 2px solid #007bff;
-    color: #007bff;
+    border: 2px solid  #07d997;
+    color:  #07d997;
     font-weight: bold;
     text-decoration: none;
     border-radius: 8px;

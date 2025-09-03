@@ -58,16 +58,18 @@
             <button type="submit"><i class="fas fa-search"></i></button>
         </div>
     </nav>
-    <section class="hero-asymmetrical" style="background: url('{{ url_for('static', filename='home-bg.png') }}') no-repeat right center / 75%;">
-    <div class="hero-content">
-        <h1>Welcome to Medicate</h1>
-        <p>Remedy that helps you live happily</p>
-        <div class="hero-buttons">
-            <a href="#" class="btn-primary">Book Appointment</a>
-            <a href="#" class="btn-secondary">Find Pharmacy</a>
+    <section class="hero-asymmetrical"
+        style="background: url('{{ url_for('static', filename='home-bg.png') }}') no-repeat right center / 75%;">
+        <div class="hero-content">
+            <h1>Welcome to Medicate</h1>
+            <p>Remedy that helps you live happily</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('book_appointment') }}" class="btn-primary">Book Appointment</a>
+                <a href="{{ url_for('pharmacy_locator') }}" class="btn-secondary">Find Pharmacy</a>
+            </div>
+
         </div>
-    </div>
-</section>
+    </section>
     <section id="about" class="about-us noselect">
         <div class="about-container">
             <div class="about-content">
@@ -109,7 +111,7 @@
             <div class="testimonial-card">
                 <p>"Medicate made it so easy to consult a doctor online.
                     I didn’t even have to step out of my house!"</p>
-            <h4>— Priya Sharma</h4>
+                <h4>— Priya Sharma</h4>
             </div>
             <div class="testimonial-card">
                 <p>"The pharmacy locator helped me find medicines late at night.
@@ -158,6 +160,7 @@
         </div>
     </section>
 
+
     <footer class="footer noselect">
         <div class="footer-container">
             <div class="footer-about">
@@ -184,4 +187,5 @@
         </div>
     </footer>
 </body>
+
 </html>
