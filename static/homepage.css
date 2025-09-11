@@ -675,5 +675,42 @@
     color: #666;
     line-height: 1.6;
 }
+.feature-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.flash-messages {
+    width: 90%;
+    margin: 10px auto;
+}
+
+.flash {
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.flash.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
 
 

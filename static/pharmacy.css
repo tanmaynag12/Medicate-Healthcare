@@ -1,0 +1,197 @@
+.pharmacy-hero {
+    background-color: #f0f4f7;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.hero-content-overlay {
+    position: relative;
+    z-index: 1;
+    color: white;
+    padding: 20px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.pharmacy-hero h1 {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.pharmacy-hero p {
+    font-size: 1.1rem;
+    color: #000000;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+.search-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.search-card h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+/* This targets only the search form inside the search-card */
+.search-card .search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.search-card .form-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.search-card .search-form input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.search-card .locate-me-btn, .search-card .search-form button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.search-card .locate-me-btn {
+    background-color: #5cb85c;
+}
+
+.search-card .locate-me-btn:hover {
+    background-color: #4cae4c;
+}
+
+.search-card .search-form button:hover {
+    background-color: #0056b3;
+}
+
+.map-section {
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+    
+.map-section iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.results-section {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.results-section h3 {
+    text-align: left;
+}
+
+.pharmacy-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.pharmacy-row .result-card {
+    flex-grow: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+    margin-bottom: 0;
+}
+
+.pharmacy-row .result-card:hover {
+    transform: translateY(-5px);
+}
+
+.pharmacy-row .result-card h4 {
+    color: #007bff;
+    margin: 0;
+}
+
+.pharmacy-row .result-card p {
+    margin: 5px 0 0 0;
+    color: #666;
+}
+
+.pharmacy-logo {
+    max-width: 75px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .search-card .search-form {
+        gap: 15px;
+    }
+    .search-card .form-group {
+        grid-template-columns: 1fr;
+    }
+    .map-section {
+        height: 350px;
+    }
+    .pharmacy-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .pharmacy-row .result-card {
+        width: 100%;
+    }
+}

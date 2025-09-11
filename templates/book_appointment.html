@@ -1,17 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Appointment</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
-</head>
-<body>
-  {% include 'navbar.html' %}
-  <section class="appointment">
-    <h2>Book Your Appointment</h2>
-    <p>Coming soon... (Placeholder)</p>
-  </section>
-  {% include 'footer.html' %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Book an Appointment{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='booking.css') }}">
+<div class="contact-hero"
+  style="background: url('{{ url_for('static', filename='bg-booking.jpg') }}') no-repeat center center/cover;">
+  <h1>Book an Appointment</h1>
+  <p>save time by booking online</p>
+</div>
+
+<div class="contact-container">
+  <div class="info-section">
+    <h3>Why Book with Medicate?</h3>
+    <div class="info-detail">
+      <i class="fas fa-check-circle"></i>
+      <div>
+        <h4>Verified Doctors</h4>
+        <p>Consult with certified professionals for reliable care.</p>
+      </div>
+    </div>
+    <div class="info-detail">
+      <i class="fas fa-calendar-alt"></i>
+      <div>
+        <h4>Easy Scheduling</h4>
+        <p>Find and book an appointment in less than 60 seconds.</p>
+      </div>
+    </div>
+    <div class="info-detail">
+      <i class="fas fa-phone-alt"></i>
+      <div>
+        <h4>24/7 Support</h4>
+        <p>Our team is available round-the-clock to assist you.</p>
+      </div>
+    </div>
+    <div class="info-detail">
+      <i class="fas fa-notes-medical"></i>
+      <div>
+        <h4>Digital Records</h4>
+        <p>All your prescriptions and reports are securely stored in one place.</p>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <h4>Head Office</h4>
+      <p>15th block, RansonBuilding, Jayanagar<br>Bangalurur,Karnataka 560000</p>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <h3>Book Your Appointment</h3>
+    <form action="#" method="post">
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="Full Name" required>
+        <input type="text" id="company" name="company" placeholder="Email Address" required>
+      </div>
+      <div class="form-group">
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+        <input type="date" id="date" name="date" placeholder="Appointment Date" required>
+      </div>
+      <div class="form-group">
+        <div class="form-group full-width">
+          <label for="timeslot">Appointment Time:</label>
+          <select id="timeslot" name="timeslot" required>
+            <option value="" disabled selected>Select a Time Slot</option>
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <textarea id="message" name="message" placeholder="Reason for Visit (Optional)"></textarea>
+        </div>
+        <button type="submit">Book Appointment</button>
+         <p class="availability-note" style="text-align: left;"><i><b>Booking timeslots will be given based on doctor availability</b></i></p>
+    </form>
+{% endblock %}
