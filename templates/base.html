@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/logo.png') }}">
+    <title>{% block title %}MEDICATE{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <div class="brand-info noselect">
+                <img src="{{ url_for('static', filename='icons/logo.png') }}" alt="Medicate Logo" class="brand-logo">
+                <div class="brand-text">
+                    <p class="company-name">MEDICATE</p>
+                    <p class="tagline">remedy that helps you live happily</p>
+                </div>
+            </div>
+        </div>
+        <div class="top-bar-right noselect">
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> support@medicate.com</p>
+            </div>
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <div class="dropdown">
+                <button class="dropbtn">
+                    {% if session.get('user') %}
+                    Hello, {{ session['user'] }} <i class="fas fa-caret-down"></i>
+                    {% else %}
+                    Account <i class="fas fa-caret-down"></i>
+                    {% endif %}
+                </button>
+
+                <div class="dropdown-content">
+                    {% if session.get('user') %}
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('signup') }}">Sign Up</a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}">HOME</a></li>
+            <li><a href="#">ABOUT US</a></li>
+            <li class="nav-dropdown">
+                <a href="#">SERVICES <i class="fas fa-caret-down"></i></a>
+                <ul class="nav-dropdown-content">
+                    <li><a href="#">Doctors</a></li>
+                    <li><a href="#">Pharmacy</a></li>
+                    <li><a href="#">Diagnostics</a></li>
+                    <li><a href="#">Emergency</a></li>
+                </ul>
+            </li>
+            <li><a href="#">CAREERS</a></li>
+            <li><a href="#">RESOURCES</a></li>
+            <li><a href="#">CONTACT US</a></li>
+        </ul>
+        <div class="search-form">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer noselect">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>Medicate</h3>
+                <p>Remedy that helps you live happily.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>📍 Bangalore, India</p>
+                <p>📞 +91 98765 43210</p>
+                <p>✉️ support@medicate.com</p>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/"><img src="static/icons/facebook.svg" alt="Facebook"></a>
+                    <a href="https://www.google.com/"><img src="static/icons/google.svg" alt="Twitter"></a>
+                    <a href="https://www.instagram.com/"><img src="static/icons/instagram.svg" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Medicate. All Rights Reserved.</p>
+        </div>
+    </footer>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const flashMessages = document.querySelectorAll('.flash-message');
+            flashMessages.forEach(message => {
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    message.style.transition = 'opacity 0.5s ease-out';
+                    setTimeout(() => {
+                        message.remove();
+                    }, 500);
+                }, 2000); 
+            });
+        });
+    </script>
+</body>
+</html>

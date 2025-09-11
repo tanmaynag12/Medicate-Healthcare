@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Pharmacy Locator - Medicate{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='pharmacy.css') }}">
+
+<div class="pharmacy-hero">
+  <img src="{{ url_for('static', filename='pharmacy-bg.jpg') }}" alt="Pharmacy Locator Background"
+    class="hero-background-image">
+
+  <div class="hero-content-overlay">
+    <h1>Pharmacy Locator</h1>
+    <p>Find and Locate Pharmacies near you.</p>
+  </div>
+</div>
+<div class="main-container">
+  <div class="search-card">
+    <h2>Find a Pharmacy Near You</h2>
+    <form class="search-form" action="#">
+      <div class="form-group">
+        <input type="text" placeholder="House/Apt" name="house" id="house">
+        <input type="text" placeholder="Street" name="street" id="street">
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="City" name="city" id="city">
+        <input type="text" placeholder="Pincode" name="pincode" id="pincode" required>
+      </div>
+      <button type="button" class="locate-me-btn">Locate My Location</button>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="map-section">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15551.40879108035!2d77.58557999999999!3d12.98064545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae160c915f02f9%3A0x6a1c1d09e5b22530!2sGandhi%20Nagar%2C%20Bangalore%2C%20Karnataka%20560009!5e0!3m2!1sen!2sin!4v1625478987654!5m2!1sen!2sin"
+      allowfullscreen="" loading="lazy"></iframe>
+  </div>
+
+  <div class="results-section">
+    <h3>Top Pharmacies Near You</h3>
+    <div class="pharmacy-row">
+      <img src="{{ url_for('static', filename='citypharmacy.jpg') }}" alt="City Pharmacy Logo"
+        class="pharmacy-logo">
+      <div class="result-card">
+        <h4>City Pharmacy</h4>
+        <p>Address: 123 Main Street, Gandhi Nagar, Bangalore</p>
+        <p>Hours: 9:00 AM - 9:00 PM</p>
+      </div>
+    </div>
+    <div class="pharmacy-row">
+      <img src="{{ url_for('static', filename='medplus.jpg') }}" alt="MedPlus Logo" class="pharmacy-logo">
+      <div class="result-card">
+        <h4>MedPlus</h4>
+        <p>Address: 456 Cross Road, Gandhi Nagar, Bangalore</p>
+        <p>Hours: 24/7</p>
+      </div>
+    </div>
+    <div class="pharmacy-row">
+      <img src="{{ url_for('static', filename='lifecare.jpg') }}" alt="LifeCare Pharmacy Logo"
+        class="pharmacy-logo">
+      <div class="result-card">
+        <h4>LifeCare Pharmacy</h4>
+        <p>Address: 789 Park Lane, Gandhi Nagar, Bangalore</p>
+        <p>Hours: 8:00 AM - 10:00 PM</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelector('.locate-me-btn').addEventListener('click', () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        alert(`Your location: Latitude ${lat}, Longitude ${lon}`);
+        
+      }, () => {
+        alert('Unable to retrieve your location.');
+      });
+    } else {
+      alert('Geolocation is not supported by your browser.');
+    }
+  });
+</script>
+{% endblock %}
