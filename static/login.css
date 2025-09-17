@@ -77,7 +77,9 @@ input::placeholder {
   font-size: 0.8rem;
   color: #9c6fff;
   text-decoration: none;
-}
+  position: relative;
+  right: -135px;
+  top: -15px;}
 
 .login-btn {
   width: 100%;
