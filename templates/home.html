@@ -106,9 +106,12 @@
             <p>Locate trusted pharmacies near you and check medicine availability instantly.</p>
         </div>
         <div class="feature-card">
+            <div class="feature-card" onclick="window.location.href='{{ url_for('chatbot') }}'"></div>
             <img src="{{ url_for('static', filename='icons/chatbot.svg') }}" alt="Chatbot">
             <h3>24/7 Chatbot Assistant</h3>
             <p>Ask health-related questions anytime with our smart health chatbot.</p>
+            <a href="{{ url_for('chatbot') }}">Try Now</a>
+
         </div>
         <div class="feature-card">
             <img src="{{ url_for('static', filename='icons/exercise.svg') }}" alt="Exercise">

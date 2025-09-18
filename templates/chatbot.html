@@ -1,41 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medicate Chatbot</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="chat-container">
-    <h2>💬 Medicate Assistant</h2>
-    <div class="messages" id="chatBox"></div>
-    <div class="input-container">
-      <input type="text" id="userInput" placeholder="Type your message...">
-      <button onclick="sendMessage()">Send</button>
+  <div class="main-wrapper">
+    <nav class="navbar">
+      <div class="nav-logo">
+        <span class="logo-text">MEDICATE</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+      </ul>
+    </nav>
+    <header class="hero-section">
+      <h1>Chat with <span class="highlight">AI</span></h1>
+      <button class="try-demo-btn">Try With Demo</button>
+    </header>
+
+    <div class="chat-main-area">
+      <div class="chat-container">
+        <div class="chat-header">
+          <h2>Medicate Chatbot</h2>
+          <p>Your personal health assistant</p>
+          <button class="clear-chat-btn">Clear chat</button>
+        </div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-area">
+          <input type="text" id="user-input" placeholder="Enter Your Message..." />
+          <button onclick="sendMessage()" class="send-btn">
+            <img src="https://img.icons8.com/ios-filled/24/ffffff/sent.png" alt="Send" />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
+  
+  <script>
+  const username = "{{ username }}";  
+</script>
 
   <script>
-    async function sendMessage() {
-      let input = document.getElementById("userInput");
-      let message = input.value.trim();
-      if (!message) return;
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+    const sendButton = document.querySelector(".send-btn");
+    const clearChatButton = document.querySelector(".clear-chat-btn");
 
-      let chatBox = document.getElementById("chatBox");
-      chatBox.innerHTML += `<div class="user"><b>You:</b> ${message}</div>`;
-
-      input.value = "";
-
-      let response = await fetch("/get_response", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({message: message})
-      });
-
-      let data = await response.json();
-      chatBox.innerHTML += `<div class="bot"><b>Bot:</b> ${data.reply}</div>`;
+    
+    function appendMessage(sender, text, icon) {
+      const div = document.createElement("div");
+      div.className = `${sender} message`;
+      div.innerHTML = `
+ <div class="icon ${sender}-icon">${icon}</div>
+<div class="text">${text}</div>
+ `;
+      chatBox.appendChild(div);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
+
+    function addBotMessage(text) {
+      appendMessage("bot", text, '🔮'); 
+    }
+
+    function addUserMessage(text) {
+      appendMessage("user", text, '💬'); 
+    }
+
+    function addQuickReplies(options) {
+      const container = document.createElement("div");
+      container.className = "quick-replies";
+
+      options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.className = "quick-reply-btn";
+        btn.textContent = option;
+        btn.onclick = () => {
+          addUserMessage(option);
+          sendMessage(option);
+        };
+        container.appendChild(btn);
+      });
+
+      chatBox.appendChild(container);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function sendMessage(msg) {
+      const message = msg || userInput.value.trim();
+      if (!message) return;
+
+      if (!msg) addUserMessage(message);
+      userInput.value = ""; 
+
+      try {
+        
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'bot message typing-indicator';
+        typingIndicator.innerHTML = '<div class="icon bot-icon">🔮</div><div class="text">Thinking...</div>';
+        chatBox.appendChild(typingIndicator);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        });
+
+       
+        typingIndicator.remove();
+
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        addBotMessage(data.reply);
+      } catch (error) {
+        
+        const existingTypingIndicator = document.querySelector('.typing-indicator');
+        if (existingTypingIndicator) {
+          existingTypingIndicator.remove();
+        }
+        addBotMessage("Sorry, something went wrong. Please try again later.");
+        console.error("Error sending message:", error);
+      }
+    }
+
+    
+    userInput.addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        sendButton.click(); 
+      }
+    });
+
+   
+    clearChatButton.addEventListener("click", async () => {
+      try {
+        const response = await fetch('/clear_history', {
+          method: 'POST'
+        });
+
+        if (response.ok) {
+          
+          chatBox.innerHTML = '';
+          addBotMessage(`Welcome ${username}! How can I help you today?`);
+          addQuickReplies([
+            "Book an appointment",
+            "Get medicine info",
+            "Talk to a doctor",
+            "Help with symptoms",
+          ]);
+        } else {
+          console.error('Failed to clear history on the server.');
+          addBotMessage("Failed to clear chat history. Please try refreshing the page.");
+        }
+      } catch (error) {
+        console.error('Error clearing history:', error);
+        addBotMessage("Failed to clear chat history. Please check your network connection.");
+      }
+    });
+
+    
+    window.onload = () => {
+  addBotMessage(`Welcome ${username}! How can I help you today?`);
+  addQuickReplies([
+    "Book an appointment",
+    "Get medicine info",
+    "Talk to a doctor",
+    "Help with symptoms",
+  ]);
+};
+
   </script>
 </body>
+
 </html>
