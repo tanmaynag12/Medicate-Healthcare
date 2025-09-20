@@ -67,20 +67,5 @@
     </div>
   </div>
 </div>
-<script>
-  document.querySelector('.locate-me-btn').addEventListener('click', () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        alert(`Your location: Latitude ${lat}, Longitude ${lon}`);
-        
-      }, () => {
-        alert('Unable to retrieve your location.');
-      });
-    } else {
-      alert('Geolocation is not supported by your browser.');
-    }
-  });
-</script>
+<script src="{{ url_for('static', filename='pharamcy_locator.js') }}"></script>
 {% endblock %}

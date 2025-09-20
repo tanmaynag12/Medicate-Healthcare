@@ -1,123 +1,581 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}MEDICATE - Home{% endblock %}
-
-{% block content %}
-<section class="hero-asymmetrical"
-    style="background: url('{{ url_for('static', filename='home-bg.png') }}') no-repeat right center / 75%;">
-    <div class="hero-content">
-        <h1>Welcome to Medicate</h1>
-        <p>Remedy that helps you live happily</p>
-        <div class="hero-buttons">
-            <a href="{{ url_for('book_appointment') }}" class="btn-primary">Book Appointment</a>
-            <a href="{{ url_for('pharmacy_locator') }}" class="btn-secondary">Find Pharmacy</a>
-        </div>
-
-    </div>
-</section>
-<section id="about" class="about-us noselect">
-  <div class="about-container">
-    
-    <!-- Image -->
-    <div class="about-img">
-      <img src="{{ url_for('static', filename= 'aboutus.jpg') }}" alt="About Medicate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/logo.png') }}">
+    <title>Medicate - Healthcare Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
+    <!-- Animated Background Elements -->
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
     </div>
 
-    <!-- Text -->
-    <div class="about-content">
-      <h2>About Us</h2>
-      <h3>Welcome to Medicate - Remedy that helps you live happily</h3>
-      <p>
-        At Medicate, our mission is to bring healthcare closer to you.
-        From AI-driven health triage to booking appointments and finding
-        trusted pharmacies, we are committed to simplifying your healthcare journey.
-      </p>
-      <p>
-        Our platform empowers patients with quick, reliable, and personalized
-        healthcare solutions at their fingertips.
-      </p>
-    </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo">
+                   <div class="logo-icon">
+                    <div class="pulse-ring"></div>
+                    <img src="{{ url_for('static', filename='icons/logo.png') }}" alt="Medicate Logo" class="brand-logo">
+                </div>
+                    
+                    <span class="logo-text">Medicate</span>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <div class="nav-dropdown">
+                    <button class="dropdown-toggle" id="accountToggle">Account</button>
+                    <div class="dropdown-menu" id="accountMenu">
+                        <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+                        <a href="{{ url_for('signup') }}" class="nav-link">Signup</a>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb">
+                            <span class="sun-icon">☀️</span>
+                            <span class="moon-icon">🌙</span>
+                        </div>
+                    </div>
+                </button>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
 
-  </div>
-</section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+            <div class="medical-pattern"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span>Trusted by 50,000+ patients</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">Your Health,</span>
+                        <span class="title-line title-highlight">Our Priority</span>
+                        <div class="title-underline"></div>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Experience seamless healthcare with our comprehensive platform.
+                        Book appointments, find pharmacies, and manage your health journey
+                        with confidence and ease.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary">
+                            <span class="btn-text">Book Appointment</span>
+                            <div class="btn-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 4V16M12 16L8 12M12 16L16 12" />
+                                </svg>
+                            </div>
+                            <div class="btn-ripple"></div>
+                        </button>
+                        <button class="btn btn-secondary">
+                            <span class="btn-text">Find Pharmacy</span>
+                            <div class="btn-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M21 10C21 17L12 21L3 10C3 6 7 3 12 3S21 6 21 10Z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div class="btn-ripple"></div>
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2L14.09 8.26L22 9L16 14.74L17.18 22.02L12 19L6.82 22.02L8 14.74L2 9L9.91 8.26L12 2Z" />
+                                </svg>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">4.9</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L20.29 9.12L22 10.83V6H16Z" />
+                                </svg>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Support</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 6V9L16 5L12 1V4C7.58 4 4 7.58 4 12C4 13.57 4.46 15.03 5.24 16.26L6.7 14.8C6.25 13.97 6 13 6 12C6 8.69 8.69 6 12 6ZM18.76 7.74L17.3 9.2C17.74 10.04 18 11 18 12C18 15.31 15.31 18 12 18V15L8 19L12 23V20C16.42 20 20 16.42 20 12C20 10.43 19.54 8.97 18.76 7.74Z" />
+                                </svg>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">1000+</span>
+                                <span class="stat-label">Doctors</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="dashboard-container">
+                        <div class="dashboard-card main-card">
+                            <div class="card-header">
+                                <div class="status-indicator">
+                                    <div class="pulse-dot"></div>
+                                    <span>Health Dashboard</span>
+                                </div>
+                                <div class="card-menu">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="dashboard-content">
+                                <div class="health-metric">
+                                    <div class="metric-chart">
+                                        <div class="chart-circle">
+                                            <div class="chart-fill" style="--percentage: 85"></div>
+                                            <div class="chart-center">
+                                                <span class="chart-value">85</span>
+                                                <span class="chart-unit">bpm</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="metric-info">
+                                        <h4>Heart Rate</h4>
+                                        <p>Normal range</p>
+                                    </div>
+                                </div>
+                                <div class="quick-stats">
+                                    <div class="quick-stat">
+                                        <div class="stat-icon-small">💊</div>
+                                        <div class="stat-details">
+                                            <span class="stat-value">3</span>
+                                            <span class="stat-name">Medications</span>
+                                        </div>
+                                    </div>
+                                    <div class="quick-stat">
+                                        <div class="stat-icon-small">📅</div>
+                                        <div class="stat-details">
+                                            <span class="stat-value">2</span>
+                                            <span class="stat-name">Appointments</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="floating-card card-1">
+                            <div class="mini-chart">
+                                <div class="chart-bars">
+                                    <div class="bar" style="height: 60%"></div>
+                                    <div class="bar" style="height: 80%"></div>
+                                    <div class="bar" style="height: 45%"></div>
+                                    <div class="bar" style="height: 90%"></div>
+                                    <div class="bar" style="height: 70%"></div>
+                                </div>
+                            </div>
+                            <span class="card-label">Weekly Activity</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <div class="notification-dot"></div>
+                            <div class="card-icon">🔔</div>
+                            <span class="card-label">3 Reminders</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <div class="progress-ring">
+                                <div class="ring-fill" style="--progress: 75"></div>
+                            </div>
+                            <span class="card-label">Health Score</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span>About Us</span>
+                </div>
+                <h2 class="section-title">Dedicated to transforming healthcare accessibility</h2>
+                <p class="section-subtitle">We're revolutionizing the way people access and manage their healthcare</p>
+            </div>
+            <div class="about-content">
+                <div class="about-cards">
+                    <div class="about-card card-mission">
+                        <div class="card-decoration"></div>
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2L13.09 8.26L18.5 6L16.74 12L22 14.74L15.74 16.5L18 22L12 16.74L6 22L8.26 16.5L2 14.74L7.26 12L5.5 6L10.91 8.26L12 2Z" />
+                            </svg>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>We're committed to making healthcare more accessible, efficient, and patient-centered. Our
+                            platform connects patients with healthcare providers seamlessly.</p>
+                        <div class="card-glow"></div>
+                    </div>
+                    <div class="about-card card-vision">
+                        <div class="card-decoration"></div>
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5S21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12S9.24 7 12 7S17 9.24 17 12S14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12S10.34 15 12 15S15 13.66 15 12S13.66 9 12 9Z" />
+                            </svg>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To create a world where quality healthcare is available to everyone, everywhere, at any time
+                            through innovative digital solutions.</p>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-container">
+                        <div class="central-circle">
+                            <div class="circle-content">
+                                <div class="heart-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M19 14C20.49 12.54 22 10.79 22 8.5C22 5.42 19.58 3 16.5 3C14.76 3 13.09 3.81 12 5.08C10.91 3.81 9.24 3 7.5 3C4.42 3 2 5.42 2 8.5C2 10.79 3.51 12.54 5 14L12 21L19 14Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="orbit-ring ring-1">
+                                <div class="orbit-dot dot-1"></div>
+                                <div class="orbit-dot dot-2"></div>
+                                <div class="orbit-dot dot-3"></div>
+                            </div>
+                            <div class="orbit-ring ring-2">
+                                <div class="orbit-dot dot-4"></div>
+                                <div class="orbit-dot dot-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span>Our Features</span>
+                </div>
+                <h2 class="section-title">Everything you need for comprehensive healthcare management</h2>
+                <p class="section-subtitle">Powerful tools designed to simplify your healthcare journey</p>
+            </div>
+            <div class="features-grid">
+                <a href="{{ url_for('book_appointment') }}" class="feature-card-link">
+                    <div class="feature-card">
+                        <div class="feature-number">01</div>
+                        <div class="feature-icon">
+                            <div class="icon-bg"></div>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1L13.5 2.5L16.17 5.17L10.59 10.75C10.21 11.13 10.21 11.75 10.59 12.13L11.41 12.95C11.8 13.34 12.42 13.34 12.81 12.95L15.55 10.22L16.37 11.04C16.76 11.43 17.38 11.43 17.77 11.04L21.77 7.04C22.15 6.65 22.15 6.03 21.77 5.64L21 4.87V9M7.91 10.91C7.66 10.66 7.66 10.24 7.91 9.99L9.99 7.91C10.24 7.66 10.66 7.66 10.91 7.91L16.09 13.09C16.34 13.34 16.34 13.76 16.09 14.01L14.01 16.09C13.76 16.34 13.34 16.34 13.09 16.09L7.91 10.91Z" />
+                            </svg>
+                        </div>
+                        <h3>Easy Appointment Booking</h3>
+                        <p>Schedule appointments with your preferred doctors in just a few clicks. View available slots
+                            and get instant confirmations.</p>
+                        <div class="feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{{ url_for('pharmacy_locator') }}" class="feature-card-link">
+                    <div class="feature-card">
+                        <div class="feature-number">02</div>
+                        <div class="feature-icon">
+                            <div class="icon-bg"></div>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2L14.09 8.26L22 9L16 14.74L17.18 22.02L12 19L6.82 22.02L8 14.74L2 9L9.91 8.26L12 2Z" />
+                            </svg>
+                        </div>
+                        <h3>Pharmacy Network</h3>
+                        <p>Find nearby pharmacies, check medicine availability, and get your prescriptions delivered to
+                            your doorstep.</p>
+                        <div class="feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
 
 
-</section>
+                <div class="feature-card">
+                    <div class="feature-number">03</div>
+                    <div class="feature-icon">
+                        <div class="icon-bg"></div>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L20.29 9.12L22 10.83V6H16Z" />
+                        </svg>
+                    </div>
+                    <h3>Health Monitoring</h3>
+                    <p>Track your health metrics, view medical history, and get personalized insights for better
+                        health management.</p>
+                    <div class="feature-arrow">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" />
+                        </svg>
+                    </div>
+                </div>
+                </a>
 
-<section class="mission noselect" id="mission">
-    <div class="mission-content">
-        <h2>Our Mission</h2>
-        <p>
-            At <span class="highlight">Medicate</span>, our mission is to make healthcare
-            accessible, simple, and reliable for everyone.
-        </p>
-        <p>
-            We combine technology with trusted medical care to ensure you get
-            the right guidance, medicines, and support—anytime, anywhere.
-        </p>
-    </div>
-</section>
 
-<section class="testimonials noselect" id="testimonials">
-    <div class="testimonials-header">
-        <h2>What Our Users Say</h2>
-        <p>Real stories from people who trusted Medicate with their health.</p>
-    </div>
-    <div class="testimonials-container">
-        <div class="testimonial-card">
-            <p>"Medicate made it so easy to consult a doctor online.
-                I didn’t even have to step out of my house!"</p>
-            <h4>— Priya Sharma</h4>
-        </div>
-        <div class="testimonial-card">
-            <p>"The pharmacy locator helped me find medicines late at night.
-                Truly a lifesaver!"</p>
-            <h4>— Rajesh Kumar</h4>
-        </div>
-        <div class="testimonial-card">
-            <p>"The AI health assistant gave me instant suggestions
-                for my symptoms. Very useful."</p>
-            <h4>— Ananya Verma</h4>
-        </div>
-    </div>
-</section>
+                <div class="feature-card">
+                    <div class="feature-number">04</div>
+                    <div class="feature-icon">
+                        <div class="icon-bg"></div>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 6V9L16 5L12 1V4C7.58 4 4 7.58 4 12C4 13.57 4.46 15.03 5.24 16.26L6.7 14.8C6.25 13.97 6 13 6 12C6 8.69 8.69 6 12 6ZM18.76 7.74L17.3 9.2C17.74 10.04 18 11 18 12C18 15.31 15.31 18 12 18V15L8 19L12 23V20C16.42 20 20 16.42 20 12C20 10.43 19.54 8.97 18.76 7.74Z" />
+                        </svg>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Get round-the-clock assistance from our healthcare support team whenever you need help or
+                        guidance.</p>
+                    <div class="feature-arrow">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 17L17 7M17 7H7M17 7V17" />
+                        </svg>
+                    </div>
+                </div>
+                </a>
 
-<section class="features noselect" id="features">
-    <div class="features-header">
-        <h2>Our Features</h2>
-        <p>Everything you need for a smarter healthcare experience.</p>
-    </div>
-    <div class="features-container">
-        <div class="feature-card">
-            <img src="static/icons/ai.svg" alt="AI Triage">
-            <h3>AI Health Triage</h3>
-            <p>Get instant guidance based on your symptoms with our AI-powered triage quiz.</p>
+                <a href="{{ url_for('chatbot') }}" class="feature-card-link">
+                    <div class="feature-card">
+                        <div class="feature-number">05</div>
+                        <div class="feature-icon">
+                            <div class="icon-bg"></div>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C10.9 6 10 6.9 10 8V14C10 15.1 10.9 16 12 16C13.1 16 14 15.1 14 14V8C14 6.9 13.1 6 12 6Z" />
+                            </svg>
+                        </div>
+                        <h3>AI-Powered Chatbot</h3>
+                        <p>Our intelligent chatbot provides instant answers to your healthcare questions, offers
+                            personalized health tips, and assists with navigating the app.</p>
+                        <div class="feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-card" onclick="window.location.href='{{ url_for('book_appointment') }}'"></div>
-            <img src="{{ url_for('static', filename='icons/doctor.svg') }}" alt="Doctor">
-            <h3>Book Appointments</h3>
-            <p>Find and consult doctors online or book in-person appointments easily.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-card" onclick="window.location.href='{{ url_for('pharmacy_locator') }}'"></div>
-            <img src="{{ url_for('static', filename='icons/pharmacy.svg') }}" alt="Pharmacy">
-            <h3>Pharmacy Locator</h3>
-            <p>Locate trusted pharmacies near you and check medicine availability instantly.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-card" onclick="window.location.href='{{ url_for('chatbot') }}'"></div>
-            <img src="{{ url_for('static', filename='icons/chatbot.svg') }}" alt="Chatbot">
-            <h3>24/7 Chatbot Assistant</h3>
-            <p>Ask health-related questions anytime with our smart health chatbot.</p>
-            <a href="{{ url_for('chatbot') }}">Try Now</a>
+    </section>
 
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span>Testimonials</span>
+                </div>
+                <h2 class="section-title">What Our Patients Say</h2>
+                <p class="section-subtitle">Real experiences from our valued patients</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="quote-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+                                </svg>
+                            </div>
+                            <div class="stars">
+                                <span>⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Medicate has revolutionized how I manage my healthcare. The
+                            appointment booking is seamless and the doctors are excellent."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <div class="avatar-bg"></div>
+                                <span>SA</span>
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Anderson</h4>
+                                <span>Patient</span>
+                            </div>
+                        </div>
+                        <div class="card-shine"></div>
+                    </div>
+                    <div class="testimonial-card featured">
+                        <div class="testimonial-header">
+                            <div class="quote-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+                                </svg>
+                            </div>
+                            <div class="stars">
+                                <span>⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Finding the right pharmacy and getting my medications has never
+                            been easier. The platform is intuitive and reliable."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <div class="avatar-bg"></div>
+                                <span>MJ</span>
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Johnson</h4>
+                                <span>Patient</span>
+                            </div>
+                        </div>
+                        <div class="card-shine"></div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="quote-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z" />
+                                </svg>
+                            </div>
+                            <div class="stars">
+                                <span>⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"The health monitoring features help me stay on top of my wellness
+                            goals. Highly recommend Medicate to everyone."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <div class="avatar-bg"></div>
+                                <span>ER</span>
+                            </div>
+                            <div class="author-info">
+                                <h4>Emily Roberts</h4>
+                                <span>Patient</span>
+                            </div>
+                        </div>
+                        <div class="card-shine"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-            <img src="{{ url_for('static', filename='icons/exercise.svg') }}" alt="Exercise">
-            <h3>Personalized Exercises</h3>
-            <p>Receive exercise and wellness recommendations tailored to your condition.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-pattern"></div>
         </div>
-    </div>
-</section>
-{% endblock %}
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2L13.09 8.26L18.5 6L16.74 12L22 14.74L15.74 16.5L18 22L12 16.74L6 22L8.26 16.5L2 14.74L7.26 12L5.5 6L10.91 8.26L12 2Z" />
+                            </svg>
+                        </div>
+                        <span class="logo-text">Medicate</span>
+                    </div>
+                    <p class="footer-description">Your trusted healthcare platform for a healthier tomorrow.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 4.557C23.117 4.949 22.168 5.213 21.172 5.332C22.189 4.723 22.97 3.758 23.337 2.608C22.386 3.172 21.332 3.582 20.21 3.803C19.313 2.846 18.032 2.248 16.616 2.248C13.437 2.248 11.101 5.214 11.819 8.293C7.728 8.088 4.1 6.128 1.671 3.149C0.381 5.362 1.002 8.257 3.194 9.723C2.388 9.697 1.628 9.476 0.965 9.107C0.911 11.388 2.546 13.522 4.914 13.997C4.221 14.185 3.462 14.229 2.69 14.081C3.316 16.037 5.134 17.46 7.29 17.5C5.22 19.123 2.612 19.848 0 19.54C2.179 20.937 4.768 21.752 7.548 21.752C16.69 21.752 21.855 14.031 21.543 7.106C22.505 6.411 23.34 5.544 24 4.557Z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M22.46 6C21.69 6.35 20.86 6.58 20 6.69C20.88 6.16 21.56 5.32 21.88 4.31C21.05 4.81 20.13 5.16 19.16 5.36C18.37 4.5 17.26 4 16 4C13.65 4 11.73 5.92 11.73 8.29C11.73 8.63 11.77 8.96 11.84 9.27C8.28 9.09 5.11 7.38 3 4.79C2.63 5.42 2.42 6.16 2.42 6.94C2.42 8.43 3.17 9.75 4.33 10.5C3.62 10.5 2.96 10.3 2.38 10C2.38 10 2.38 10 2.38 10.03C2.38 12.11 3.86 13.85 5.82 14.24C5.46 14.34 5.08 14.39 4.69 14.39C4.42 14.39 4.15 14.36 3.89 14.31C4.43 16 6 17.26 7.89 17.29C6.43 18.45 4.58 19.13 2.56 19.13C2.22 19.13 1.88 19.11 1.54 19.07C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.368C3.274 4.23 4.194 3.305 5.337 3.305C6.477 3.305 7.401 4.23 7.401 5.368C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <a href="#">Book Appointment</a>
+                        <a href="#">Find Pharmacy</a>
+                        <a href="#">Health Monitoring</a>
+                        <a href="#">Telemedicine</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">News</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#">Help Center</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Contact Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-divider"></div>
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Medicate. All rights reserved.</p>
+                    <div class="footer-badges">
+                        <span class="badge">HIPAA Compliant</span>
+                        <span class="badge">ISO 27001</span>
+                        <span class="badge">SOC 2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='homepage.js') }}"></script>
+    </body>
+
+</html>
