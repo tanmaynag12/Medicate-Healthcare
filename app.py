@@ -3,6 +3,8 @@ from flask_pymongo import PyMongo
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 load_dotenv()
 
@@ -41,10 +43,12 @@ def signup():
         if existing_user:
             flash("Email already registered!", "error")
         else:
+            # Hash the password before storing
+            hashed_password = generate_password_hash(password)
             mongo.db.users.insert_one({
                 "username": username,
                 "email": email,
-                "password": password
+                "password": hashed_password
             })
 
             session['user'] = username
@@ -54,14 +58,16 @@ def signup():
     return render_template('signup.html')
 
 
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
 
-        user = mongo.db.users.find_one({"email": email, "password": password})
-        if user:
+        user = mongo.db.users.find_one({"email": email})
+        if user and check_password_hash(user['password'], password):
             session['user'] = user['username']
             flash(f"Welcome back, {user['username']}!", "success")
             return redirect(url_for('home'))
