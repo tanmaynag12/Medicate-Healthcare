@@ -27,7 +27,8 @@ pharmacies_data = [
 # --- Routes ---
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', user=session.get('user'))
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -86,7 +87,7 @@ def pharmacy_locator():
         if not pharmacies and query:
             flash(f"No pharmacies found for pincode {query}.", 'error')
     
-    return render_template("pharmacy_locator.html", pharmacies=pharmacies)
+    return render_template('pharmacy_locator.html', user=session.get('user'))
 
 @app.route('/book_appointment', methods=['GET', 'POST'])
 def book_appointment():
@@ -101,7 +102,7 @@ def book_appointment():
         mongo.db.appointments.insert_one(appointment)
         flash(f"Appointment booked successfully for {appointment['name']} with {appointment['doctor']} on {appointment['date']}.", 'success')
         return redirect(url_for('book_appointment'))
-    return render_template("book_appointment.html")
+    return render_template('book_appointment.html', user=session.get('user'))
 
 @app.route("/chatbot")
 def chatbot():

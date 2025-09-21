@@ -21,27 +21,36 @@
         <div class="container">
             <div class="nav-brand">
                 <div class="logo">
-                   <div class="logo-icon">
-                    <div class="pulse-ring"></div>
-                    <img src="{{ url_for('static', filename='icons/logo.png') }}" alt="Medicate Logo" class="brand-logo">
-                </div>
-                    
+                    <div class="logo-icon">
+                        <div class="pulse-ring"></div>
+                        <img src="{{ url_for('static', filename='icons/logo.png') }}" alt="Medicate Logo"
+                            class="brand-logo">
+                    </div>
+
                     <span class="logo-text">Medicate</span>
                 </div>
             </div>
+
             <nav class="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#testimonials" class="nav-link">Testimonials</a>
                 <a href="#contact" class="nav-link">Contact</a>
+
                 <div class="nav-dropdown">
                     <button class="dropdown-toggle" id="accountToggle">Account</button>
                     <div class="dropdown-menu" id="accountMenu">
+                        {% if user %}
+                        <span class="nav-link">Welcome, {{ user }}</span>
+                        <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+                        {% else %}
                         <a href="{{ url_for('login') }}" class="nav-link">Login</a>
                         <a href="{{ url_for('signup') }}" class="nav-link">Signup</a>
+                        {% endif %}
                     </div>
                 </div>
+
                 <button class="theme-toggle" id="themeToggle">
                     <div class="toggle-track">
                         <div class="toggle-thumb">
@@ -51,6 +60,7 @@
                     </div>
                 </button>
             </nav>
+
             <div class="mobile-menu-toggle">
                 <span></span>
                 <span></span>
@@ -85,7 +95,8 @@
                         with confidence and ease.
                     </p>
                     <div class="hero-actions">
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary"
+                            onclick="window.location.href='{{ url_for('book_appointment') }}'">
                             <span class="btn-text">Book Appointment</span>
                             <div class="btn-icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -94,7 +105,8 @@
                             </div>
                             <div class="btn-ripple"></div>
                         </button>
-                        <button class="btn btn-secondary">
+                        <button class="btn btn-primary"
+                            onclick="window.location.href='{{ url_for('pharmacy_locator') }}'">
                             <span class="btn-text">Find Pharmacy</span>
                             <div class="btn-icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -505,36 +517,35 @@
         </div>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
+                <div class="nav-brand">
                     <div class="logo">
                         <div class="logo-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 2L13.09 8.26L18.5 6L16.74 12L22 14.74L15.74 16.5L18 22L12 16.74L6 22L8.26 16.5L2 14.74L7.26 12L5.5 6L10.91 8.26L12 2Z" />
-                            </svg>
+                            <div class="pulse-ring"></div>
+                            <img src="{{ url_for('static', filename='icons/logo.png') }}" alt="Medicate Logo"
+                                class="brand-logo">
                         </div>
+
                         <span class="logo-text">Medicate</span>
                     </div>
                     <p class="footer-description">Your trusted healthcare platform for a healthier tomorrow.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link">
+                        <a href="https://www.facebook.com" class="social-link">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path
-                                    d="M24 4.557C23.117 4.949 22.168 5.213 21.172 5.332C22.189 4.723 22.97 3.758 23.337 2.608C22.386 3.172 21.332 3.582 20.21 3.803C19.313 2.846 18.032 2.248 16.616 2.248C13.437 2.248 11.101 5.214 11.819 8.293C7.728 8.088 4.1 6.128 1.671 3.149C0.381 5.362 1.002 8.257 3.194 9.723C2.388 9.697 1.628 9.476 0.965 9.107C0.911 11.388 2.546 13.522 4.914 13.997C4.221 14.185 3.462 14.229 2.69 14.081C3.316 16.037 5.134 17.46 7.29 17.5C5.22 19.123 2.612 19.848 0 19.54C2.179 20.937 4.768 21.752 7.548 21.752C16.69 21.752 21.855 14.031 21.543 7.106C22.505 6.411 23.34 5.544 24 4.557Z" />
+                                    d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .732.593 1.325 1.325 1.325h11.495v-9.294h-3.155v-3.645h3.155v-2.191c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.793.143v3.24l-1.914.001c-1.503 0-1.795.715-1.795 1.763v2.316h3.587l-.467 3.645h-3.12v9.293h6.113c.732 0 1.325-.593 1.325-1.325v-21.351c0-.732-.593-1.325-1.325-1.325z" />
                             </svg>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M22.46 6C21.69 6.35 20.86 6.58 20 6.69C20.88 6.16 21.56 5.32 21.88 4.31C21.05 4.81 20.13 5.16 19.16 5.36C18.37 4.5 17.26 4 16 4C13.65 4 11.73 5.92 11.73 8.29C11.73 8.63 11.77 8.96 11.84 9.27C8.28 9.09 5.11 7.38 3 4.79C2.63 5.42 2.42 6.16 2.42 6.94C2.42 8.43 3.17 9.75 4.33 10.5C3.62 10.5 2.96 10.3 2.38 10C2.38 10 2.38 10 2.38 10.03C2.38 12.11 3.86 13.85 5.82 14.24C5.46 14.34 5.08 14.39 4.69 14.39C4.42 14.39 4.15 14.36 3.89 14.31C4.43 16 6 17.26 7.89 17.29C6.43 18.45 4.58 19.13 2.56 19.13C2.22 19.13 1.88 19.11 1.54 19.07C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z" />
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.368C3.274 4.23 4.194 3.305 5.337 3.305C6.477 3.305 7.401 4.23 7.401 5.368C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z" />
-                            </svg>
-                        </a>
+                            <a href="https://in.linkedin.com" class="social-link">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M20.447 20.452H16.893V14.883C16.893 13.555 16.866 11.846 15.041 11.846C13.188 11.846 12.905 13.291 12.905 14.785V20.452H9.351V9H12.765V10.561H12.811C13.288 9.661 14.448 8.711 16.181 8.711C19.782 8.711 20.448 11.081 20.448 14.166V20.452H20.447ZM5.337 7.433C4.193 7.433 3.274 6.507 3.274 5.368C3.274 4.23 4.194 3.305 5.337 3.305C6.477 3.305 7.401 4.23 7.401 5.368C7.401 6.507 6.476 7.433 5.337 7.433ZM7.119 20.452H3.555V9H7.119V20.452ZM22.225 0H1.771C0.792 0 0 0.774 0 1.729V22.271C0 23.227 0.792 24 1.771 24H22.222C23.2 24 24 23.227 24 22.271V1.729C24 0.774 23.2 0 22.222 0H22.225Z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com" class="social-link">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07c3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.204-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07c-3.265-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.944.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.277-.073 1.685-.073 4.945 0 3.259.014 3.667.072 4.944.2 4.357 2.618 6.78 6.98 6.98 1.277.059 1.685.073 4.945.073 3.259 0 3.668-.014 4.944-.072 4.357-.2 6.782-2.618 6.98-6.98.058-1.277.073-1.685.073-4.944 0-3.259-.014-3.667-.072-4.945-.2-4.358-2.618-6.782-6.98-6.98-1.277-.059-1.685-.073-4.944-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.758 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.832 0-1.508.675-1.508 1.507 0 .832.676 1.508 1.508 1.508.831 0 1.507-.676 1.507-1.508s-.676-1.507-1.507-1.507z" />
+                                </svg>
+                            </a>
                     </div>
                 </div>
                 <div class="footer-links">
