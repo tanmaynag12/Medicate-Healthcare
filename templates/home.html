@@ -509,6 +509,21 @@
             </div>
         </div>
     </section>
+    <!-- Floating Chatbot Widget -->
+    <div id="chatbot-widget">💬</div>
+
+    <!-- Chatbot Box -->
+    <div id="chatbot-box">
+        <div id="chat-box"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message..." />
+            <button class="send-btn">Send</button>
+            <button class="clear-chat-btn">Clear</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
 
     <!-- Footer -->
     <footer class="footer">

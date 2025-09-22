@@ -116,7 +116,6 @@ clearChatButton.addEventListener("click", async () => {
     }
 });
 
-
 window.onload = () => {
     addBotMessage(`Welcome ${username}! How can I help you today?`);
     addQuickReplies([
@@ -126,3 +125,9 @@ window.onload = () => {
         "Help with symptoms",
     ]);
 };
+const chatbotWidget = document.getElementById("chatbot-widget");
+const chatbotBox = document.getElementById("chatbot-box");
+
+chatbotWidget.addEventListener("click", () => {
+    chatbotBox.classList.toggle("open");
+});
