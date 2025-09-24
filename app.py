@@ -3,7 +3,6 @@ from flask_pymongo import PyMongo
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
-from werkzeug.security import generate_password_hash, check_password_hash
 load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'your_very_secret_key') 
@@ -29,11 +28,11 @@ def signup():
         if existing_user:
             flash("Email already registered!", "error")
         else:
-            hashed_password = generate_password_hash(password)
+            password =(password)
             mongo.db.users.insert_one({
                 "username": username,
                 "email": email,
-                "password": hashed_password
+                "password": password
             })
             session['user'] = username
             flash("Signup successful! You are now logged in.", "success")
@@ -45,13 +44,16 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         user = mongo.db.users.find_one({"email": email})
-        if user and check_password_hash(user['password'], password):
+
+        if user and user['password'] == password:
             session['user'] = user['username']
             flash(f"Welcome back, {user['username']}!", "success")
             return redirect(url_for('home'))
         else:
             flash("Invalid login details!", "error")
+
     return render_template('login.html')
+
 @app.route('/logout')
 def logout():
     session.pop('user', None)
@@ -141,8 +143,6 @@ def health_monitor():
             "blood_pressure": blood_pressure,
             "glucose": glucose
         })
-
-        # Simple rule-based analysis (later can be AI-driven)
         if heart_rate < 60:
             report = "Your heart rate is a bit low. Consider consulting a doctor."
         elif heart_rate > 100:
@@ -153,6 +153,31 @@ def health_monitor():
             report = "All vitals look good. Keep it up!"
 
     return render_template("health_monitor.html", report=report)
+
+@app.route('/telemedicine', methods=['GET', 'POST'])
+def telemedicine():
+    return render_template('telemedicine.html')
+
+@app.route('/about', methods=['GET', 'POST'])
+def about():
+    return render_template('about.html')
+
+@app.route('/careers', methods=['GET', 'POST'])
+def careers():
+    return render_template('careers.html')
+
+@app.route('/news', methods=['GET', 'POST'])
+def news():
+    return render_template('news.html')
+
+@app.route('/privacy', methods=['GET', 'POST'])
+def privacy():
+    return render_template('privacy.html')
+
+@app.route('/terms', methods=['GET', 'POST'])
+def terms():
+    return render_template('terms.html')
+
 
 
 if __name__ == '__main__':

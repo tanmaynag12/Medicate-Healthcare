@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Medicate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='careers.css') }}" />
+</head>
+<body>
+    <header class="page-header">
+        <h1>Join Our Team</h1>
+        <p>We're building the future of healthcare and are looking for passionate individuals to help us on our mission.</p>
+    </header>
+
+    <main>
+        <section class="job-listings">
+            <h2>Current Openings</h2>
+            <p>We're always looking for passionate people to help us transform healthcare. Explore our open positions:</p>
+
+            <div class="job-listing">
+                <h3 class="job-title"><a href="#">Frontend Developer</a></h3>
+                <span class="job-type">Full-time</span> | <span class="job-location">Remote</span>
+            </div>
+            
+            <div class="job-listing">
+                <h3 class="job-title"><a href="#">Backend Engineer</a></h3>
+                <span class="job-type">Full-time</span> | <span class="job-location">San Francisco, CA</span>
+            </div>
+
+            <div class="job-listing">
+                <h3 class="job-title"><a href="#">Healthcare Consultant</a></h3>
+                <span class="job-type">Part-time</span> | <span class="job-location">New York, NY</span>
+            </div>
+        </section>
+        
+        <section class="call-to-action">
+            <h3>Don't see a role for you?</h3>
+            <p>We are always open to connecting with talented individuals. Send us your resume and let's talk about how you can make a difference.</p>
+            <a href="#" class="btn-primary">Submit Your Resume</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Medicate. All Rights Reserved.</p>
+    </footer>
+ <script src="{{ url_for('static', filename='homepage.js') }}"></script>
+</body>
+</html>
