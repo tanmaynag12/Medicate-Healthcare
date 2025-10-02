@@ -176,15 +176,23 @@ body {
 
 /* --- Chat Header (inside the chat-container) --- */
 .chat-header {
+    /* Merged your padding/background with the Flexbox alignment rules */
+    display: flex; 
+    justify-content: space-between; /* Pushes content and actions to opposite ends */
+    align-items: center; 
+    
+    /* Properties from your provided CSS: */
     background: rgba(255, 255, 255, 0.05);
-    padding: 20px 30px;
-    text-align: left; /* Align text left */
+    padding: 20px 30px; 
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex; /* For clear chat button */
-    justify-content: space-between;
-    align-items: center;
+}
+.chat-header > div:first-child { 
+    display: flex; /* Inherit the necessary flex from the previous structure */
+    flex-direction: column;
+    flex-grow: 1; /* Allows it to take up available space, pushing buttons to the right */
+    /* text-align: left is now implied by flex-start alignment */
 }
 
 .chat-header h2 {
@@ -200,7 +208,21 @@ body {
     opacity: 0.6;
     color: #b0b0b0;
 }
-
+.header-actions {
+    display: flex;
+    gap: 10px; /* Space between the two buttons */
+    align-items: center;
+    flex-shrink: 0; /* Prevents the button group from shrinking */
+    margin-left: 20px; /* Separates the buttons from the title text */
+}
+.chat-header button {
+    padding: 8px 15px; /* Use padding from your provided .clear-chat-btn */
+    border-radius: 20px; /* Use border-radius from your provided .clear-chat-btn */
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
 .chat-header div { /* Wrapper for title and subtitle */
     display: flex;
     flex-direction: column;
@@ -210,11 +232,6 @@ body {
     background: none;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #A0A9B8;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.85em;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .clear-chat-btn:hover {
@@ -222,7 +239,17 @@ body {
     color: #fff;
     border-color: rgba(255, 255, 255, 0.4);
 }
+.history-btn {
+    background: none;
+    border: 1px solid #4a90e2; /* Use a distinct blue color for the border */
+    color: #4a90e2; /* Use blue text */
+}
 
+.history-btn:hover {
+    background-color: rgba(74, 144, 226, 0.1); /* Light blue background hover effect */
+    color: #fff; /* White text on hover */
+    border-color: #74aef5;
+}
 
 /* --- Chat Box (Messages Area) --- */
 .chat-box {
@@ -422,6 +449,16 @@ body {
     transform: translateY(0);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
+.history-btn {
+    background: transparent; 
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+.history-btn:hover {
+    background: var(--primary-light);
+    color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
@@ -458,6 +495,7 @@ body {
         padding: 15px 20px;
     }
 }
+
 
 @media (max-width: 480px) {
     .navbar {

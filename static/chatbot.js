@@ -2,7 +2,8 @@ const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
 const sendButton = document.querySelector(".send-btn");
 const clearChatButton = document.querySelector(".clear-chat-btn");
-const username = window.username;
+const username = window.username || 'there';
+
 function appendMessage(sender, text, icon) {
     const div = document.createElement("div");
     div.className = `${sender} message`;
@@ -83,11 +84,19 @@ async function sendMessage(msg) {
 }
 
 
+// Send button click
+sendButton.addEventListener("click", () => {
+    sendMessage();
+});
+
+// Enter key
 userInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
-        sendButton.click();
+        event.preventDefault(); // stops page reload
+        sendMessage();
     }
 });
+
 
 
 clearChatButton.addEventListener("click", async () => {
@@ -117,14 +126,35 @@ clearChatButton.addEventListener("click", async () => {
 });
 
 window.onload = () => {
-    addBotMessage(`Welcome ${username}! How can I help you today?`);
-    addQuickReplies([
-        "Book an appointment",
-        "Get medicine info",
-        "Talk to a doctor",
-        "Help with symptoms",
-    ]);
+    // Get history passed from Flask (assuming you updated HTML to include window.chatHistory)
+    const history = window.chatHistory || []; 
+    
+    if (history.length > 0) {
+        // If history exists, render it
+        history.forEach(entry => {
+            // Note: We only need to check the role and parts for rendering the message text
+            const role = entry.role;
+            // The text is stored in entry.parts[0].text in Gemini history format
+            const text = entry.parts && entry.parts[0] && entry.parts[0].text ? entry.parts[0].text : '...'; 
+            
+            if (role === 'user') {
+                addUserMessage(text);
+            } else if (role === 'model') {
+                addBotMessage(text);
+            }
+        });
+    } else {
+        // If no history, show the initial welcome message and quick replies
+        addBotMessage(`Welcome ${username}! How can I help you today?`);
+        addQuickReplies([
+            "Book an appointment",
+            "Get medicine info",
+            "Talk to a doctor",
+            "Help with symptoms",
+        ]);
+    }
 };
+
 const chatbotWidget = document.getElementById("chatbot-widget");
 const chatbotBox = document.getElementById("chatbot-box");
 

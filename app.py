@@ -85,12 +85,14 @@ def book_appointment():
     return render_template('book_appointment.html', user=session.get('user'))
 @app.route("/chatbot")
 def chatbot():
-    if 'user' in session:  
-        username = session['user']
-        return render_template("chatbot.html")
+    if 'user' in session:   
+        username = session['user']     
+        history = session.get('chat_history', []) 
+        return render_template("chatbot.html", username=username, chat_history=history) 
     else:
         flash("You must be logged in to access the chatbot.", "error")
         return redirect(url_for("login"))
+
 @app.route("/chat", methods=["POST"])
 def chat():
     if 'user' not in session:

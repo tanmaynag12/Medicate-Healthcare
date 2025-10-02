@@ -36,7 +36,7 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#testimonials" class="nav-link">Testimonials</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
 
                 <div class="nav-dropdown">
                     {% if user %}
@@ -57,21 +57,21 @@
                     {% endif %}
                 </div>
 
-        <button class="theme-toggle" id="themeToggle">
-            <div class="toggle-track">
-                <div class="toggle-thumb">
-                    <span class="sun-icon">☀️</span>
-                    <span class="moon-icon">🌙</span>
-                </div>
-            </div>
-        </button>
-        </nav>
+                <button class="theme-toggle" id="themeToggle">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb">
+                            <span class="sun-icon">☀️</span>
+                            <span class="moon-icon">🌙</span>
+                        </div>
+                    </div>
+                </button>
+            </nav>
 
-        <div class="mobile-menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
@@ -359,45 +359,45 @@
                 </a>
 
                 <a href="{{ url_for('health_monitor') }}" class="feature-card-link">
-                <div class="feature-card">
-                    <div class="feature-number">03</div>
-                    <div class="feature-icon">
-                        <div class="icon-bg"></div>
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L20.29 9.12L22 10.83V6H16Z" />
-                        </svg>
+                    <div class="feature-card">
+                        <div class="feature-number">03</div>
+                        <div class="feature-icon">
+                            <div class="icon-bg"></div>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M16 6L18.29 8.29L13.41 13.17L9.41 9.17L2 16.59L3.41 18L9.41 12L13.41 16L20.29 9.12L22 10.83V6H16Z" />
+                            </svg>
+                        </div>
+                        <h3>Health Monitoring</h3>
+                        <p>Track your health metrics, view medical history, and get personalized insights for better
+                            health management.</p>
+                        <div class="feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
                     </div>
-                    <h3>Health Monitoring</h3>
-                    <p>Track your health metrics, view medical history, and get personalized insights for better
-                        health management.</p>
-                    <div class="feature-arrow">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M7 17L17 7M17 7H7M17 7V17" />
-                        </svg>
-                    </div>
-                </div>
                 </a>
 
                 <a href="{{ url_for('contact') }}" class="feature-card-link">
-                <div class="feature-card">
-                    <div class="feature-number">04</div>
-                    <div class="feature-icon">
-                        <div class="icon-bg"></div>
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 6V9L16 5L12 1V4C7.58 4 4 7.58 4 12C4 13.57 4.46 15.03 5.24 16.26L6.7 14.8C6.25 13.97 6 13 6 12C6 8.69 8.69 6 12 6ZM18.76 7.74L17.3 9.2C17.74 10.04 18 11 18 12C18 15.31 15.31 18 12 18V15L8 19L12 23V20C16.42 20 20 16.42 20 12C20 10.43 19.54 8.97 18.76 7.74Z" />
-                        </svg>
+                    <div class="feature-card">
+                        <div class="feature-number">04</div>
+                        <div class="feature-icon">
+                            <div class="icon-bg"></div>
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 6V9L16 5L12 1V4C7.58 4 4 7.58 4 12C4 13.57 4.46 15.03 5.24 16.26L6.7 14.8C6.25 13.97 6 13 6 12C6 8.69 8.69 6 12 6ZM18.76 7.74L17.3 9.2C17.74 10.04 18 11 18 12C18 15.31 15.31 18 12 18V15L8 19L12 23V20C16.42 20 20 16.42 20 12C20 10.43 19.54 8.97 18.76 7.74Z" />
+                            </svg>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Get round-the-clock assistance from our healthcare support team whenever you need help or
+                            guidance.</p>
+                        <div class="feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" />
+                            </svg>
+                        </div>
                     </div>
-                    <h3>24/7 Support</h3>
-                    <p>Get round-the-clock assistance from our healthcare support team whenever you need help or
-                        guidance.</p>
-                    <div class="feature-arrow">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M7 17L17 7M17 7H7M17 7V17" />
-                        </svg>
-                    </div>
-                </div>
                 </a>
 
                 <a href="{{ url_for('chatbot') }}" class="feature-card-link">
@@ -518,18 +518,28 @@
     <!-- Floating Chatbot Widget -->
     <div id="chatbot-widget">💬</div>
 
-    <!-- Chatbot Box -->
     <div id="chatbot-box">
+
+        <div class="chatbot-top-bar">
+            <span>Go-to:</span>
+            <a href="{{ url_for('chatbot') }}" class="header-btn">Main ChatBot -></a>
+        </div>
+
         <div id="chat-box"></div>
+
         <div class="chat-input">
             <input type="text" id="user-input" placeholder="Type a message..." />
             <button class="send-btn">Send</button>
             <button class="clear-chat-btn">Clear</button>
         </div>
+
     </div>
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+       <script>
+    window.username = "{{ username }}";
+     </script>
 
     <!-- Footer -->
     <footer class="footer">
@@ -575,19 +585,19 @@
                         <a href="{{ url_for('book_appointment') }}">Book Appointment</a>
                         <a href="{{ url_for('pharmacy_locator') }}">Find Pharmacy</a>
                         <a href="{{ url_for('health_monitor') }}">Health Monitoring</a>
-                        <a href="#">Telemedicine</a>
+                        <a href="{{ url_for('telemedicine') }}">Telemedicine</a>
                     </div>
                     <div class="footer-column">
                         <h4>Company</h4>
                         <a href="#about">About Us</a>
-                        <a href="#">Careers</a>
-                        <a href="#">News</a>
+                        <a href="{{ url_for('careers') }}">Careers</a>
+                        <a href="{{ url_for('news') }}">News</a>
                     </div>
                     <div class="footer-column">
                         <h4>Support</h4>
                         <a href="{{ url_for('contact') }}">Contact</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
+                        <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+                        <a href="{{ url_for('terms') }}">Terms of Service</a>
                     </div>
                 </div>
             </div>

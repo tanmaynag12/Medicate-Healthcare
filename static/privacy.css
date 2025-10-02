@@ -29,7 +29,7 @@ body {
     opacity: 0.9;
 }
 main {
-    margin-top: 120px; /* matches navbar height */
+  max-width: 1200px;
   margin: 12px auto 40px;
   padding: 30px;
   background-color: var(--bg-secondary);

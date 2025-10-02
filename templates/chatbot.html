@@ -29,9 +29,14 @@
     <div class="chat-main-area">
       <div class="chat-container">
         <div class="chat-header">
+        <div>
           <h2>Medicate Chatbot</h2>
           <p>Your personal health assistant</p>
-          <button class="clear-chat-btn">Clear chat</button>
+        </div>
+          <div class="header-actions">
+            <button class="clear-chat-btn">Clear chat</button>
+            <button class="history-btn" onclick="loadChatHistory(false)">History</button>
+          </div>
         </div>
         <div class="chat-box" id="chat-box"></div>
         <div class="input-area">
@@ -45,7 +50,9 @@
   </div>
   <script>
     window.username = "{{ username }}";
+    window.chatHistory = {{ chat_history | tojson }}; 
   </script>
   <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
 </body>
+
 </html>
