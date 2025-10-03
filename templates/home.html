@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/logo.png') }}">
     <title>Medicate - Healthcare Platform</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
-    <!-- Animated Background Elements -->
     <div class="bg-animation">
         <div class="floating-shape shape-1"></div>
         <div class="floating-shape shape-2"></div>
@@ -15,8 +13,6 @@
         <div class="floating-shape shape-4"></div>
         <div class="floating-shape shape-5"></div>
     </div>
-
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="nav-brand">
@@ -74,8 +70,6 @@
             </div>
         </div>
     </header>
-
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-bg">
             <div class="gradient-orb orb-1"></div>
@@ -238,8 +232,6 @@
             </div>
         </div>
     </section>
-
-    <!-- About Us Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
@@ -304,8 +296,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
             <div class="section-header">
@@ -423,8 +413,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
         <div class="container">
             <div class="section-header">
@@ -515,33 +503,23 @@
             </div>
         </div>
     </section>
-    <!-- Floating Chatbot Widget -->
     <div id="chatbot-widget">💬</div>
-
     <div id="chatbot-box">
-
         <div class="chatbot-top-bar">
             <span>Go-to:</span>
             <a href="{{ url_for('chatbot') }}" class="header-btn">Main ChatBot -></a>
         </div>
-
         <div id="chat-box"></div>
-
         <div class="chat-input">
             <input type="text" id="user-input" placeholder="Type a message..." />
             <button class="send-btn">Send</button>
             <button class="clear-chat-btn">Clear</button>
         </div>
-
     </div>
-
-    <!-- Scripts -->
     <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
        <script>
     window.username = "{{ username }}";
      </script>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-bg">
             <div class="footer-pattern"></div>

@@ -116,6 +116,7 @@ body {
 .hero-section .highlight {
     background: linear-gradient(90deg, #7B68EE 0%, #00BFFF 100%); /* Blue to purple gradient */
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
