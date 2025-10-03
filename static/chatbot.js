@@ -126,15 +126,12 @@ clearChatButton.addEventListener("click", async () => {
 });
 
 window.onload = () => {
-    // Get history passed from Flask (assuming you updated HTML to include window.chatHistory)
+    // Load chat history first
     const history = window.chatHistory || []; 
     
     if (history.length > 0) {
-        // If history exists, render it
         history.forEach(entry => {
-            // Note: We only need to check the role and parts for rendering the message text
             const role = entry.role;
-            // The text is stored in entry.parts[0].text in Gemini history format
             const text = entry.parts && entry.parts[0] && entry.parts[0].text ? entry.parts[0].text : '...'; 
             
             if (role === 'user') {
@@ -144,7 +141,6 @@ window.onload = () => {
             }
         });
     } else {
-        // If no history, show the initial welcome message and quick replies
         addBotMessage(`Welcome ${username}! How can I help you today?`);
         addQuickReplies([
             "Book an appointment",
@@ -153,11 +149,47 @@ window.onload = () => {
             "Help with symptoms",
         ]);
     }
+
+    // Initialize widget ONLY if elements exist (for homepage)
+    const chatbotWidget = document.getElementById("chatbot-widget");
+    const chatbotBox = document.getElementById("chatbot-box");
+    
+    if (chatbotWidget && chatbotBox) {
+        chatbotWidget.addEventListener("click", () => {
+            chatbotBox.classList.toggle("open");
+        });
+    }
 };
+const historyButton = document.querySelector(".history-btn");
 
-const chatbotWidget = document.getElementById("chatbot-widget");
-const chatbotBox = document.getElementById("chatbot-box");
+historyButton.addEventListener("click", async () => {
+    try {
+        const response = await fetch('/get_history'); // Flask route to fetch history
+        if (!response.ok) {
+            throw new Error("Failed to fetch history");
+        }
 
-chatbotWidget.addEventListener("click", () => {
-    chatbotBox.classList.toggle("open");
+        const history = await response.json();
+
+        // Clear current chat before showing history
+        chatBox.innerHTML = '';
+
+        if (history.length > 0) {
+            history.forEach(entry => {
+                const role = entry.role;
+                const text = entry.parts && entry.parts[0] && entry.parts[0].text ? entry.parts[0].text : "...";
+                if (role === 'user') {
+                    addUserMessage(text);
+                } else if (role === 'model') {
+                    addBotMessage(text);
+                }
+            });
+        } else {
+            addBotMessage("No previous history found.");
+        }
+    } catch (error) {
+        console.error("Error loading history:", error);
+        addBotMessage("Sorry, I couldn't load chat history.");
+    }
 });
+

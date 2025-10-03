@@ -5,7 +5,10 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'your_very_secret_key') 
+app.secret_key = os.environ.get('SECRET_KEY', 'your_very_secret_key')
+app.config['SESSION_TYPE'] = 'filesystem'  
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.5-flash")
 app.config["MONGO_URI"] = "mongodb://localhost:27017/medicate_db"
@@ -86,8 +89,17 @@ def book_appointment():
 @app.route("/chatbot")
 def chatbot():
     if 'user' in session:   
-        username = session['user']     
-        history = session.get('chat_history', []) 
+        username = session['user']
+        
+       
+        user_email = mongo.db.users.find_one({"username": username})['email']
+        chat_record = mongo.db.chat_history.find_one({"user_email": user_email})
+        
+        if chat_record and 'history' in chat_record:
+            history = chat_record['history']
+        else:
+            history = []
+        
         return render_template("chatbot.html", username=username, chat_history=history) 
     else:
         flash("You must be logged in to access the chatbot.", "error")
@@ -97,24 +109,70 @@ def chatbot():
 def chat():
     if 'user' not in session:
         return jsonify({"reply": "You must be logged in to chat."}), 403
+    
     user_message = request.json.get("message")
     if not user_message:
-        return jsonify({"reply": "Please type something!"})   
-    if 'chat_history' not in session:
-        session['chat_history'] = []
-    chat_session = model.start_chat(history=session['chat_history'])
+        return jsonify({"reply": "Please type something!"})
+    
+   
+    user_data = mongo.db.users.find_one({"username": session['user']})
+    print(f"User data found: {user_data}") 
+    
+    if not user_data:
+        return jsonify({"reply": "User not found"}), 404
+    
+    user_email = user_data['email']
+    print(f"User email: {user_email}")
+   
+    chat_record = mongo.db.chat_history.find_one({"user_email": user_email})
+    print(f"Existing chat record: {chat_record}")  
+    
+    if chat_record and 'history' in chat_record:
+        chat_history = chat_record['history']
+    else:
+        chat_history = []
+    
+    chat_session = model.start_chat(history=chat_history)
+    
     try:
         response = chat_session.send_message(user_message)
-        session['chat_history'].append({'role': 'user', 'parts': [{'text': user_message}]})
-        session['chat_history'].append({'role': 'model', 'parts': [{'text': response.text}]})
+        
+       
+        chat_history.append({'role': 'user', 'parts': [{'text': user_message}]})
+        chat_history.append({'role': 'model', 'parts': [{'text': response.text}]})
+        
+        print(f"Saving chat history with {len(chat_history)} messages")  
+        
+      
+        result = mongo.db.chat_history.update_one(
+            {"user_email": user_email},
+            {"$set": {"history": chat_history, "username": session['user']}},
+            upsert=True
+        )
+        
+        print(f"MongoDB update result: {result.modified_count} modified, {result.upserted_id} upserted")  # DEBUG
+        
         return jsonify({"reply": response.text})
     except Exception as e:
         print(f"Error generating content: {e}")
-        return jsonify({"reply": "Sorry, I couldn’t process that at the moment."}), 500
+        return jsonify({"reply": "Sorry, I couldn't process that at the moment."}), 500
 @app.route('/clear_history', methods=['POST'])
 def clear_history():
-    session.pop('chat_history', None)
+    if 'user' in session:
+        user_email = mongo.db.users.find_one({"username": session['user']})['email']
+        mongo.db.chat_history.delete_one({"user_email": user_email})
     return jsonify({'status': 'ok'})
+@app.route('/get_history', methods=['GET'])
+def get_history():
+    if 'user' not in session:
+        return jsonify([])
+    
+    user_email = mongo.db.users.find_one({"username": session['user']})['email']
+    chat_record = mongo.db.chat_history.find_one({"user_email": user_email})
+    
+    if chat_record and 'history' in chat_record:
+        return jsonify(chat_record['history'])
+    return jsonify([])
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':

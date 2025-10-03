@@ -210,9 +210,10 @@ body {
 }
 .header-actions {
     display: flex;
-    gap: 10px; /* Space between the two buttons */
-    align-items: center;
     flex-shrink: 0; /* Prevents the button group from shrinking */
+    flex-direction: column;  /* stack buttons vertically */
+    gap: 10px;
+    align-items: flex-end;   /* align them to the right edge */
     margin-left: 20px; /* Separates the buttons from the title text */
 }
 .chat-header button {
@@ -259,7 +260,8 @@ body {
     background-color: transparent;
     display: flex;
     flex-direction: column;
-    gap: 18px; /* More space between messages */
+    gap: 18px;
+    scroll-behavior: smooth;
 }
 
 /* Scrollbar Styling */
@@ -541,4 +543,9 @@ body {
         width: 20px;
         height: 20px;
     }
+}
+:root {
+    --primary-color: #7B68EE;
+    --primary-hover: #6A5ACD;
+    --primary-light: rgba(123, 104, 238, 0.15);
 }

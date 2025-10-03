@@ -35,7 +35,8 @@
         </div>
           <div class="header-actions">
             <button class="clear-chat-btn">Clear chat</button>
-            <button class="history-btn" onclick="loadChatHistory(false)">History</button>
+            <button class="history-btn">History</button>
+
           </div>
         </div>
         <div class="chat-box" id="chat-box"></div>
@@ -53,6 +54,12 @@
     window.chatHistory = {{ chat_history | tojson }}; 
   </script>
   <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+  <script>
+    window.username = "{{ username }}";
+    window.chatHistory = {{ chat_history | tojson }}; 
+    console.log("Chat History:", window.chatHistory); // ← ADD THIS
+    console.log("History Length:", window.chatHistory.length); // ← ADD THIS
+</script>
 </body>
 
 </html>
