@@ -11,7 +11,7 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.5-flash")
-app.config["MONGO_URI"] = "mongodb://localhost:27017/medicate_db"
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 mongo = PyMongo(app)
 pharmacies_data = [
     {"name": "Medicare Pharmacy", "address": "MG Road, Bangalore", "contact": "9876543210", "pincode": "560001"},
