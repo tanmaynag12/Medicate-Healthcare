@@ -113,7 +113,7 @@ The app exposes the following main pages and endpoints:
 - `chat_history`
   - `user_email`
   - `username`
-  - `history` (stored chat messages)
+  - `history`
 - `contacts`
   - `name`
   - `email`
@@ -123,14 +123,6 @@ The app exposes the following main pages and endpoints:
   - `heart_rate`
   - `blood_pressure`
   - `glucose`
-
-## Important files for an AI or developer
-
-- `app.py` — start here. It contains all application logic, route definitions, and data handling.
-- `templates/` — contains the UI screens referenced by each route.
-- `static/chatbot.js` — contains the JavaScript logic for the chatbot UI.
-- `requirements.txt` — lists all required Python packages.
-- `.env` — holds runtime secrets and API credentials.
 
 ## Setup Instructions
 
@@ -171,8 +163,6 @@ The app exposes the following main pages and endpoints:
 - Google Gemini usage requires a valid API key and may incur costs.
 
 ## Extension guidelines
-
-If you or an AI extend this project, the easiest enhancements are:
 
 - Add password hashing and user account security
 - Replace static pharmacy data with a real lookup API
