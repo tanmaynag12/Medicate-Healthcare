@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
+from datetime import datetime, timezone
 load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'your_very_secret_key')
@@ -11,6 +12,7 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.5-flash")
+MAX_HISTORY_MESSAGES = 20  # only the last N messages get sent to Gemini as context
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 mongo = PyMongo(app)
 pharmacies_data = [
@@ -109,70 +111,77 @@ def chatbot():
 def chat():
     if 'user' not in session:
         return jsonify({"reply": "You must be logged in to chat."}), 403
-    
+
     user_message = request.json.get("message")
     if not user_message:
         return jsonify({"reply": "Please type something!"})
-    
-   
+
     user_data = mongo.db.users.find_one({"username": session['user']})
-    print(f"User data found: {user_data}") 
-    
     if not user_data:
         return jsonify({"reply": "User not found"}), 404
-    
+
     user_email = user_data['email']
-    print(f"User email: {user_email}")
-   
+
     chat_record = mongo.db.chat_history.find_one({"user_email": user_email})
-    print(f"Existing chat record: {chat_record}")  
-    
-    if chat_record and 'history' in chat_record:
-        chat_history = chat_record['history']
-    else:
-        chat_history = []
-    
-    chat_session = model.start_chat(history=chat_history)
-    
+    chat_history = chat_record['history'] if chat_record and 'history' in chat_record else []
+
+    # Only send a rolling window of recent messages to Gemini as context.
+    # Full history is still kept in Mongo for the history panel.
+    context_window = chat_history[-MAX_HISTORY_MESSAGES:]
+    gemini_history = [
+        {"role": m["role"], "parts": m["parts"]} for m in context_window
+    ]
+
+    chat_session = model.start_chat(history=gemini_history)
+
     try:
         response = chat_session.send_message(user_message)
-        
-       
-        chat_history.append({'role': 'user', 'parts': [{'text': user_message}]})
-        chat_history.append({'role': 'model', 'parts': [{'text': response.text}]})
-        
-        print(f"Saving chat history with {len(chat_history)} messages")  
-        
-      
-        result = mongo.db.chat_history.update_one(
+        now = datetime.now(timezone.utc).isoformat()
+
+        chat_history.append({'role': 'user', 'parts': [{'text': user_message}], 'timestamp': now})
+        chat_history.append({'role': 'model', 'parts': [{'text': response.text}], 'timestamp': now})
+
+        mongo.db.chat_history.update_one(
             {"user_email": user_email},
             {"$set": {"history": chat_history, "username": session['user']}},
             upsert=True
         )
-        
-        print(f"MongoDB update result: {result.modified_count} modified, {result.upserted_id} upserted")  # DEBUG
-        
+
         return jsonify({"reply": response.text})
     except Exception as e:
         print(f"Error generating content: {e}")
         return jsonify({"reply": "Sorry, I couldn't process that at the moment."}), 500
+
 @app.route('/clear_history', methods=['POST'])
 def clear_history():
     if 'user' in session:
         user_email = mongo.db.users.find_one({"username": session['user']})['email']
         mongo.db.chat_history.delete_one({"user_email": user_email})
     return jsonify({'status': 'ok'})
+
 @app.route('/get_history', methods=['GET'])
 def get_history():
     if 'user' not in session:
         return jsonify([])
-    
+
     user_email = mongo.db.users.find_one({"username": session['user']})['email']
     chat_record = mongo.db.chat_history.find_one({"user_email": user_email})
-    
-    if chat_record and 'history' in chat_record:
-        return jsonify(chat_record['history'])
-    return jsonify([])
+
+    if not chat_record or 'history' not in chat_record:
+        return jsonify([])
+
+    grouped = {}
+    for msg in chat_record['history']:
+        ts = msg.get('timestamp')
+        date_key = ts[:10] if ts else "Unknown date"
+        grouped.setdefault(date_key, []).append(msg)
+
+    result = [
+        {"date": date, "messages": messages}
+        for date, messages in sorted(grouped.items(), reverse=True)
+    ]
+    return jsonify(result)
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
@@ -242,4 +251,3 @@ def terms():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
-

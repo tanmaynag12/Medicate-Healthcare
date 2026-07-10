@@ -29,16 +29,25 @@
     <div class="chat-main-area">
       <div class="chat-container">
         <div class="chat-header">
-        <div>
-          <h2>Medicate Chatbot</h2>
-          <p>Your personal health assistant</p>
-        </div>
+          <div>
+            <h2>Medicate Chatbot</h2>
+            <p>Your personal health assistant</p>
+          </div>
           <div class="header-actions">
             <button class="clear-chat-btn">Clear chat</button>
             <button class="history-btn">History</button>
-
           </div>
         </div>
+
+       
+        <div class="history-panel" id="history-panel">
+          <div class="history-panel-header">
+            <span>Past Messages</span>
+            <button id="close-history-btn">&times;</button>
+          </div>
+          <div class="history-list" id="history-list"></div>
+        </div>
+
         <div class="chat-box" id="chat-box"></div>
         <div class="input-area">
           <input type="text" id="user-input" placeholder="Enter Your Message..." />
@@ -49,17 +58,11 @@
       </div>
     </div>
   </div>
+
   <script>
     window.username = "{{ username }}";
-    window.chatHistory = {{ chat_history | tojson }}; 
   </script>
   <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
-  <script>
-    window.username = "{{ username }}";
-    window.chatHistory = {{ chat_history | tojson }}; 
-    console.log("Chat History:", window.chatHistory); // ← ADD THIS
-    console.log("History Length:", window.chatHistory.length); // ← ADD THIS
-</script>
 </body>
 
 </html>

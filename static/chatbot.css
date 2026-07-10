@@ -1,23 +1,23 @@
 /* Import Google Fonts (if you didn't add it in HTML) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* General Body and Main Wrapper Styling */
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif; /* Using Inter font as in reference */
-    background: #10152B; /* Dark background as in the image */
-    color: #E0E6F0; /* Light text for contrast */
+    font-family: 'Inter', sans-serif; 
+    background: #10152B;
+    color: #E0E6F0; 
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align content to the top initially */
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    align-items: flex-start; 
+    overflow-x: hidden; 
 }
 
 .main-wrapper {
     width: 100%;
-    max-width: 1200px; /* Max width for the entire layout */
+    max-width: 1200px; 
     padding: 0 20px;
     box-sizing: border-box;
     display: flex;
@@ -25,15 +25,15 @@ body {
     align-items: center;
 }
 
-/* --- Navigation Bar --- */
+
 .navbar {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 25px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Subtle separator */
-    margin-bottom: 50px; /* Space below navbar */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 50px; 
 }
 
 .nav-logo .logo-text {
@@ -66,7 +66,7 @@ body {
     color: #fff;
 }
 
-/* Underline effect for active/hover */
+
 .nav-links li a::after {
     content: '';
     position: absolute;
@@ -74,7 +74,7 @@ body {
     bottom: -5px;
     width: 0;
     height: 2px;
-    background-color: #7B68EE; /* Highlight color */
+    background-color: #7B68EE;
     transition: width 0.3s ease;
 }
 
@@ -99,11 +99,11 @@ body {
     opacity: 1;
 }
 
-/* --- Hero Section --- */
+
 .hero-section {
     text-align: center;
-    margin-bottom: 80px; /* Space above chat main area */
-    padding-top: 50px; /* Space from navbar */
+    margin-bottom: 80px; 
+    padding-top: 50px; 
 }
 
 .hero-section h1 {
@@ -114,7 +114,7 @@ body {
 }
 
 .hero-section .highlight {
-    background: linear-gradient(90deg, #7B68EE 0%, #00BFFF 100%); /* Blue to purple gradient */
+    background: linear-gradient(90deg, #7B68EE 0%, #00BFFF 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -127,7 +127,7 @@ body {
 }
 
 .try-demo-btn {
-    background: linear-gradient(90deg, #7B68EE 0%, #00BFFF 100%); /* Gradient button */
+    background: linear-gradient(90deg, #7B68EE 0%, #00BFFF 100%); 
     border: none;
     color: #fff;
     padding: 15px 30px;
@@ -145,44 +145,44 @@ body {
     box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
 }
 
-/* --- Chat Main Area (the floating chat window) --- */
+
 .chat-main-area {
-    width: 90%; /* Adjust as needed */
-    max-width: 900px; /* Wider chat container for the new layout */
-    background: rgba(25, 25, 40, 0.6); /* Semi-transparent dark background */
-    backdrop-filter: blur(15px); /* Glassmorphism effect */
+    width: 90%;
+    max-width: 900px; 
+    background: rgba(25, 25, 40, 0.6);
+    backdrop-filter: blur(15px); 
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle white border */
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); /* Stronger, softer shadow */
-    overflow: hidden; /* Ensures content stays within rounded borders */
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    position: relative; /* For clear chat button positioning */
-    height: 700px; /* Fixed height for the chat area */
-    margin-bottom: 100px; /* Space below the chat window */
+    position: relative; 
+    height: 700px; 
+    margin-bottom: 100px; 
 }
 
-/* Your original chat-container (now nested) */
+
 .chat-container {
     width: 100%;
-    max-width: none; /* Override previous max-width */
-    height: 100%; /* Fill parent height */
-    background: transparent; /* Make it transparent to show chat-main-area background */
-    border-radius: 0; /* No border radius here, handled by parent */
-    box-shadow: none; /* No shadow here */
+    max-width: none; 
+    height: 100%; 
+    background: transparent; 
+    border-radius: 0; 
+    box-shadow: none; 
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
-/* --- Chat Header (inside the chat-container) --- */
+
 .chat-header {
-    /* Merged your padding/background with the Flexbox alignment rules */
+    
     display: flex; 
-    justify-content: space-between; /* Pushes content and actions to opposite ends */
+    justify-content: space-between;
     align-items: center; 
     
-    /* Properties from your provided CSS: */
+  
     background: rgba(255, 255, 255, 0.05);
     padding: 20px 30px; 
     border-top-left-radius: 20px;
@@ -190,10 +190,9 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .chat-header > div:first-child { 
-    display: flex; /* Inherit the necessary flex from the previous structure */
+    display: flex; 
     flex-direction: column;
-    flex-grow: 1; /* Allows it to take up available space, pushing buttons to the right */
-    /* text-align: left is now implied by flex-start alignment */
+    flex-grow: 1; 
 }
 
 .chat-header h2 {
@@ -211,21 +210,21 @@ body {
 }
 .header-actions {
     display: flex;
-    flex-shrink: 0; /* Prevents the button group from shrinking */
-    flex-direction: column;  /* stack buttons vertically */
+    flex-shrink: 0; 
+    flex-direction: column;  
     gap: 10px;
-    align-items: flex-end;   /* align them to the right edge */
-    margin-left: 20px; /* Separates the buttons from the title text */
+    align-items: flex-end;  
+    margin-left: 20px; 
 }
 .chat-header button {
-    padding: 8px 15px; /* Use padding from your provided .clear-chat-btn */
-    border-radius: 20px; /* Use border-radius from your provided .clear-chat-btn */
+    padding: 8px 15px;
+    border-radius: 20px; 
     font-size: 0.85em;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
 }
-.chat-header div { /* Wrapper for title and subtitle */
+.chat-header div { 
     display: flex;
     flex-direction: column;
 }
@@ -243,17 +242,17 @@ body {
 }
 .history-btn {
     background: none;
-    border: 1px solid #4a90e2; /* Use a distinct blue color for the border */
-    color: #4a90e2; /* Use blue text */
+    border: 1px solid #4a90e2; 
+    color: #4a90e2; 
 }
 
 .history-btn:hover {
-    background-color: rgba(74, 144, 226, 0.1); /* Light blue background hover effect */
-    color: #fff; /* White text on hover */
+    background-color: rgba(74, 144, 226, 0.1); 
+    color: #fff; 
     border-color: #74aef5;
 }
 
-/* --- Chat Box (Messages Area) --- */
+
 .chat-box {
     flex-grow: 1;
     padding: 25px 30px; /* More padding */
@@ -265,7 +264,7 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Scrollbar Styling */
+
 .chat-box::-webkit-scrollbar {
     width: 8px;
 }
@@ -281,35 +280,35 @@ body {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* --- Individual Message Styling --- */
+
 .message {
     display: flex;
     align-items: flex-start;
-    max-width: 75%; /* Slightly less max-width */
+    max-width: 75%; 
     position: relative;
     padding: 12px 18px;
-    border-radius: 15px; /* Slightly less rounded */
+    border-radius: 15px; 
     line-height: 1.5;
     font-size: 0.95em;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
 }
 
 /* Bot Message */
 .bot.message {
-    background: rgba(255, 255, 255, 0.08); /* Semi-transparent bot bubble */
+    background: rgba(255, 255, 255, 0.08); 
     color: #E0E6F0;
     align-self: flex-start;
-    border-top-left-radius: 4px; /* Slight 'point' */
-    margin-right: auto; /* Push to left */
+    border-top-left-radius: 4px; 
+    margin-right: auto; 
 }
 
-/* User Message */
+
 .user.message {
-    background: #7B68EE; /* Primary highlight purple for user */
+    background: #7B68EE; 
     color: #fff;
     align-self: flex-end;
-    border-top-right-radius: 4px; /* Slight 'point' */
-    margin-left: auto; /* Push to right */
+    border-top-right-radius: 4px; 
+    margin-left: auto; 
 }
 
 /* Typing Indicator */
@@ -327,7 +326,7 @@ body {
 }
 
 
-/* --- Icons within messages --- */
+
 .icon {
     width: 30px;
     height: 30px;
@@ -339,18 +338,18 @@ body {
     font-size: 1.3em;
     color: #fff;
     margin-right: 12px;
-    background-color: #3b3b5c; /* Default icon background */
+    background-color: #3b3b5c; 
 }
 
 .user .icon {
     margin-right: 0;
     margin-left: 12px;
     order: 2;
-    background-color: #6A5ACD; /* User icon specific background */
+    background-color: #6A5ACD;
 }
 
 .bot .icon {
-    background-color: #5a5a8e; /* Bot icon specific background */
+    background-color: #5a5a8e; 
 }
 
 
@@ -358,13 +357,13 @@ body {
     order: 1;
 }
 
-/* --- Quick Replies Styling --- */
+
 .quick-replies {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 15px;
-    align-self: flex-start; /* Aligned with bot messages */
+    align-self: flex-start; 
     padding-bottom: 5px;
 }
 
@@ -389,7 +388,7 @@ body {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Input Area --- */
+
 .input-area {
     display: flex;
     padding: 20px 30px; /* More padding */
@@ -397,7 +396,7 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    align-items: center; /* Vertically align items */
+    align-items: center; 
 }
 
 #user-input {
@@ -423,11 +422,11 @@ body {
 }
 
 .send-btn {
-    background-color: #7B68EE; /* Highlight purple */
+    background-color: #7B68EE; 
     border: none;
-    border-radius: 50%; /* Circular button */
-    width: 45px; /* Fixed width */
-    height: 45px; /* Fixed height */
+    border-radius: 50%; 
+    width: 45px; 
+    height: 45px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -437,9 +436,9 @@ body {
 }
 
 .send-btn img {
-    width: 22px; /* Size of the send icon */
+    width: 22px; 
     height: 22px;
-    filter: invert(1); /* Make the icon white */
+    filter: invert(1); 
 }
 
 .send-btn:hover {
@@ -463,7 +462,7 @@ body {
     border-color: var(--primary-hover);
 }
 
-/* Media Queries for Responsiveness */
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -480,7 +479,7 @@ body {
         font-size: 0.9em;
     }
     .chat-main-area {
-        height: 80vh; /* Adjust height for smaller screens */
+        height: 80vh; 
         width: 95%;
     }
     .chat-header {
@@ -489,7 +488,7 @@ body {
         gap: 10px;
     }
     .clear-chat-btn {
-        align-self: flex-end; /* Push to right */
+        align-self: flex-end; 
     }
     .message {
         max-width: 90%;
@@ -505,7 +504,7 @@ body {
         padding: 15px 0;
     }
     .nav-links {
-        display: none; /* Hide nav links on very small screens if desired */
+        display: none; 
     }
     .hero-section {
         margin-bottom: 40px;
@@ -549,4 +548,139 @@ body {
     --primary-color: #7B68EE;
     --primary-hover: #6A5ACD;
     --primary-light: rgba(123, 104, 238, 0.15);
+}
+
+.history-panel {
+    position: absolute;
+    top: 80px; 
+    right: 20px;
+    width: 300px;
+    max-height: 420px;
+    background: rgba(25, 25, 40, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: none;
+    flex-direction: column;
+    z-index: 50;
+    overflow: hidden;
+}
+
+.history-panel.open {
+    display: flex;
+}
+
+.history-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #fff;
+}
+
+.history-panel-header button {
+    background: none;
+    border: none;
+    color: #A0A9B8;
+    font-size: 1.2em;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.history-panel-header button:hover {
+    color: #fff;
+}
+
+.history-list {
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+.history-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.history-item {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    line-height: 1.4;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    color: #E0E6F0;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.history-item:hover {
+    background: rgba(123, 104, 238, 0.2);
+}
+
+.history-item.user {
+    border-left: 3px solid #7B68EE;
+}
+
+.history-item.model {
+    border-left: 3px solid #5a5a8e;
+    color: #A0A9B8;
+}
+
+.history-date-group {
+    margin-bottom: 6px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.history-date-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    border-radius: 10px;
+    color: #E0E6F0;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.history-date-header:hover {
+    background: rgba(123, 104, 238, 0.2);
+}
+
+.history-date-group.expanded .history-date-header {
+    border-radius: 10px 10px 0 0;
+}
+
+.history-date-count {
+    font-weight: 400;
+    font-size: 0.85em;
+    color: #A0A9B8;
+}
+
+.history-date-messages {
+    padding: 6px 8px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.history-empty {
+    padding: 14px;
+    font-size: 0.85em;
+    color: #888;
+    text-align: center;
 }
