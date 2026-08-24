@@ -19,19 +19,19 @@
   <div class="container">
     <div class="left">
       <h1>Let’s Get Started:</h1>
-      <p>Sign up to access personalized healthcare services.</p>
+      <p>Sign up to access to your own personalized healthcare services.</p>
     </div>
 
     <div class="right social-right">
       <div class="form-social-wrapper">
         <form action="/signup" method="POST" class="signup-form">
           <h2>Sign up</h2>
-          <input type="text" name="username" placeholder="enter Your username" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <input type="password" name="password" placeholder="Create Password" required>
-          <input type="password" name="confirm_password" placeholder="Repeat password" required>
+          <input type="text" name="username" placeholder="Username" required>
+          <input type="email" name="email" placeholder="Email address" required>
+          <input type="password" name="password" placeholder="Create password" required>
+          <input type="password" name="confirm_password" placeholder="Confirm password" required>
           <button type="submit">Sign up</button>
-          <p class="login-link">Already a member? <a href="/login">Sign in here</a></p>
+          <p class="login-link">Already a member? <a href="/login">Click here to login</a></p>
         </form>
 
         <div class="divider-horizontal">
@@ -39,13 +39,13 @@
         </div>
 
         <div class="social-btns">
-          <button class="google-btn">
+          <button type="button" class="google-btn" onclick="window.location.href='https://www.google.com'">
             <img src="{{ url_for('static', filename='icons/google.svg') }}" alt="Google">
           </button>
-          <button class="facebook-btn">
+          <button type="button" class="facebook-btn" onclick="window.location.href='https://www.facebook.com'">
             <img src="{{ url_for('static', filename='icons/facebook.svg') }}" alt="Facebook">
           </button>
-          <button class="instagram-btn">
+          <button type="button" class="instagram-btn" onclick="window.location.href='https://www.instagram.com'">
             <img src="{{ url_for('static', filename='icons/instagram.svg') }}" alt="Instagram">
           </button>
         </div>

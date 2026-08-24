@@ -12,9 +12,14 @@ app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.5-flash")
-MAX_HISTORY_MESSAGES = 20  # only the last N messages get sent to Gemini as context
+MAX_HISTORY_MESSAGES = 20  
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 mongo = PyMongo(app)
+
+@app.context_processor
+def inject_current_user():
+    return {"user": session.get("user")}
+
 pharmacies_data = [
     {"name": "Medicare Pharmacy", "address": "MG Road, Bangalore", "contact": "9876543210", "pincode": "560001"},
     {"name": "Apollo Pharmacy", "address": "Koramangala, Bangalore", "contact": "9988776655", "pincode": "560034"},
@@ -89,44 +94,39 @@ def book_appointment():
         return redirect(url_for('book_appointment'))
     return render_template('book_appointment.html', user=session.get('user'))
 @app.route("/chatbot")
+@app.route("/chatbot")
 def chatbot():
-    if 'user' in session:   
-        username = session['user']
-        
-       
-        user_email = mongo.db.users.find_one({"username": username})['email']
-        chat_record = mongo.db.chat_history.find_one({"user_email": user_email})
-        
-        if chat_record and 'history' in chat_record:
-            history = chat_record['history']
-        else:
-            history = []
-        
-        return render_template("chatbot.html", username=username, chat_history=history) 
-    else:
-        flash("You must be logged in to access the chatbot.", "error")
-        return redirect(url_for("login"))
+    if 'user' not in session:
+        return render_template("chatbot_locked.html")
+
+    username = session.get('user')
+    history = []
+
+    user_data = mongo.db.users.find_one({"username": username})
+    if user_data:
+        chat_record = mongo.db.chat_history.find_one(
+            {"user_email": user_data['email']}
+        )
+        history = chat_record.get('history', []) if chat_record else []
+
+    return render_template("chatbot.html", username=username, chat_history=history)
 
 @app.route("/chat", methods=["POST"])
 def chat():
     if 'user' not in session:
-        return jsonify({"reply": "You must be logged in to chat."}), 403
+        return jsonify({"reply": "Please log in to use the chatbot."}), 401
 
     user_message = request.json.get("message")
     if not user_message:
         return jsonify({"reply": "Please type something!"})
 
     user_data = mongo.db.users.find_one({"username": session['user']})
-    if not user_data:
-        return jsonify({"reply": "User not found"}), 404
+    user_email = user_data['email'] if user_data else None
+    chat_history = []
+    if user_data:
+        chat_record = mongo.db.chat_history.find_one({"user_email": user_email})
+        chat_history = chat_record.get('history', []) if chat_record else []
 
-    user_email = user_data['email']
-
-    chat_record = mongo.db.chat_history.find_one({"user_email": user_email})
-    chat_history = chat_record['history'] if chat_record and 'history' in chat_record else []
-
-    # Only send a rolling window of recent messages to Gemini as context.
-    # Full history is still kept in Mongo for the history panel.
     context_window = chat_history[-MAX_HISTORY_MESSAGES:]
     gemini_history = [
         {"role": m["role"], "parts": m["parts"]} for m in context_window
@@ -141,17 +141,17 @@ def chat():
         chat_history.append({'role': 'user', 'parts': [{'text': user_message}], 'timestamp': now})
         chat_history.append({'role': 'model', 'parts': [{'text': response.text}], 'timestamp': now})
 
-        mongo.db.chat_history.update_one(
-            {"user_email": user_email},
-            {"$set": {"history": chat_history, "username": session['user']}},
-            upsert=True
-        )
+        if user_email:
+            mongo.db.chat_history.update_one(
+                {"user_email": user_email},
+                {"$set": {"history": chat_history, "username": session['user']}},
+                upsert=True
+            )
 
         return jsonify({"reply": response.text})
     except Exception as e:
         print(f"Error generating content: {e}")
         return jsonify({"reply": "Sorry, I couldn't process that at the moment."}), 500
-
 @app.route('/clear_history', methods=['POST'])
 def clear_history():
     if 'user' in session:

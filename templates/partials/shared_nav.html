@@ -1,0 +1,71 @@
+<header class="header">
+  <div class="container">
+    <div class="nav-brand">
+      <div class="logo">
+        <div class="logo-icon">
+          <div class="pulse-ring"></div>
+          <img
+            src="{{ url_for('static', filename='icons/logo.png') }}"
+            alt="Medicate Logo"
+            class="brand-logo"
+          />
+        </div>
+        <span class="logo-text">Medicate</span>
+      </div>
+    </div>
+
+    <nav class="nav-menu" id="primary-navigation">
+      <a href="{{ url_for('home') }}#home" class="nav-link">Home</a>
+      <a href="{{ url_for('home') }}#about" class="nav-link">About</a>
+      <a href="{{ url_for('home') }}#features" class="nav-link">Features</a>
+      <a href="{{ url_for('home') }}#testimonials" class="nav-link"
+        >Testimonials</a
+      >
+      <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
+
+      <div class="nav-dropdown">
+        {% if user %}
+        <button class="dropdown-toggle" id="accountToggle">
+          Hello, {{ user }}!
+        </button>
+        <div class="dropdown-menu" id="accountMenu">
+          <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+        </div>
+        {% else %}
+        <button class="dropdown-toggle" id="accountToggle">Account</button>
+        <div class="dropdown-menu" id="accountMenu">
+          <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+          <a href="{{ url_for('signup') }}" class="nav-link">Signup</a>
+        </div>
+        {% endif %}
+      </div>
+
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Toggle color theme"
+      >
+        <div class="toggle-track">
+          <div class="toggle-thumb">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+          </div>
+        </div>
+      </button>
+    </nav>
+
+    <button
+      class="mobile-menu-toggle"
+      id="mobileMenuToggle"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>

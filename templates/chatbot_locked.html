@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='icons/logo.png') }}"
+    />
+    <title>Chatbot Locked - Medicate</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='homepage.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='shared.css') }}"
+    />
+  </head>
+  <body>
+    <div class="bg-animation">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+      <div class="floating-shape shape-4"></div>
+      <div class="floating-shape shape-5"></div>
+    </div>
+    {% include 'partials/shared_nav.html' %}
+
+    <section
+      class="hero"
+      style="min-height: 70vh; display: flex; align-items: center"
+    >
+      <div class="hero-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" style="text-align: center">
+          <div class="section-badge">
+            <span>Login Required</span>
+          </div>
+          <h2 class="section-title">
+            Only logged-in users can access the chatbot
+          </h2>
+          <p class="section-subtitle">
+            Please log in to chat with our AI-powered health assistant.
+          </p>
+          <div
+            class="hero-actions"
+            style="justify-content: center; margin-top: 2rem"
+          >
+            <button class="btn btn-primary" data-url="{{ url_for('login') }}">
+              <span class="btn-text">Go to Login</span>
+              <div class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 4V16M12 16L8 12M12 16L16 12" />
+                </svg>
+              </div>
+              <div class="btn-ripple"></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include 'partials/shared_footer.html' %}
+
+    <script src="{{ url_for('static', filename='homepage.js') }}"></script>
+    <script>
+      document.querySelectorAll(".btn[data-url]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          window.location.href = btn.dataset.url;
+        });
+      });
+    </script>
+  </body>
+</html>

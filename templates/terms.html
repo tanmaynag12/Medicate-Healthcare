@@ -7,10 +7,12 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/logo.png') }}">
     <title>Medicate - Terms Of Service</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='terms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='shared.css') }}">
 </head>
 
 <body>
-    <header class="header">
+    {% include 'partials/shared_nav.html' %}
+    {% if false %}<header class="header">
         <div class="container">
             <div class="nav-brand">
                 <div class="logo">
@@ -57,7 +59,7 @@
                 <span></span>
             </div>
         </div>
-    </header>
+    </header>{% endif %}
 
     <main>
         <h1>Terms of Service</h1>
@@ -119,7 +121,8 @@
         </section>
     </main>
 
-    <footer class="footer">
+    {% include 'partials/shared_footer.html' %}
+    {% if false %}<footer class="footer">
         <div class="footer-bg">
             <div class="footer-pattern"></div>
         </div>
@@ -182,15 +185,10 @@
                 <div class="footer-divider"></div>
                 <div class="footer-bottom-content">
                     <p>&copy; 2024 Medicate. All rights reserved.</p>
-                    <div class="footer-badges">
-                        <span class="badge">HIPAA Compliant</span>
-                        <span class="badge">ISO 27001</span>
-                        <span class="badge">SOC 2</span>
-                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>{% endif %}
     <script src="{{ url_for('static', filename='homepage.js') }}"></script>
 </body>
 

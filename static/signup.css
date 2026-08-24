@@ -1,8 +1,8 @@
-/* SIGNUP PAGE ONLY: scenic background image */
+/* SIGNUP PAGE ONLY: static dark background */
 body.signup-bg {
-  background: url('/static/bg-signup.jpg') no-repeat center center fixed;
-  background-size: cover;
+  background: linear-gradient(135deg, #071a2b 0%, #0b3440 55%, #111827 100%);
   align-items: center;
+  display: flex;
   justify-content: center;
   min-height: 100vh;
 }
@@ -12,7 +12,7 @@ body.signup-bg {
   display: flex;
   max-width: 800px;
   min-height: 460px;
-  margin: 64px auto;
+  margin: 0 auto;
   border-radius: 22px;
   overflow: hidden;
   background: rgba(255,255,255,0.10);
@@ -76,22 +76,26 @@ body.signup-bg {
 
 /* Signup form styles */
 .signup-form {
+  flex: 1 1 220px;
   width: 100%;
+  min-width: 0;
 }
 
 .signup-form h2 {
-  font-size: 2rem;
-  color: #2579ec;
+  width: calc(100% + 168px);
+  font-size: 2.2rem;
+  color: #ffffff;
   margin-bottom: 24px;
   font-weight: 700;
   letter-spacing: 1px;
-  text-align: left;
+  text-align: center;
   text-shadow: 0 2px 8px rgba(49,168,226,0.11);
 }
 
 .signup-form input {
+  box-sizing: border-box;
   width: 100%;
-  padding: 13px 11px;
+  padding: 15px 14px;
   margin-bottom: 17px;
   border: none;
   border-radius: 7px;
@@ -108,7 +112,12 @@ body.signup-bg {
   box-shadow: 0 4px 18px rgba(49,168,226,0.11);
 }
 
+.signup-form input::placeholder {
+  font-size: 0.9rem;
+}
+
 .signup-form button {
+  box-sizing: border-box;
   width: 100%;
   padding: 13px;
   background: linear-gradient(90deg, #49d6e7 0%, #1672ec 100%);
@@ -129,13 +138,16 @@ body.signup-bg {
 }
 
 .login-link {
-  margin-top: 19px;
+  margin: 18px 0 0;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  width: 100%;
 }
 
 .login-link a {
   color: #ffffff;
+  display: inline-block;
   text-decoration: underline;
   font-weight: 600;
 }
@@ -153,16 +165,89 @@ body.signup-bg {
     align-items: flex-start;
     border: none;
   }
+
+  .signup-form h2 {
+    width: 100%;
+  }
 }
 @media (max-width: 600px) {
-  body, body.signup-bg { padding: 0 2vw; }
+  body.signup-bg {
+    min-height: 100dvh;
+    padding: 12px 2vw;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .container {
+    min-height: 0;
+    margin: 0 auto;
+  }
+
+  .left {
+    padding: 20px 22px 16px;
+  }
+
+  .left h1 {
+    font-size: 1.7rem;
+    margin-bottom: 8px;
+    padding-bottom: 9px;
+  }
+
+  .left p {
+    font-size: 0.92rem;
+  }
+
+  .right {
+    padding: 20px 22px 18px;
+  }
+
+  .signup-form h2 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+
+  .signup-form input {
+    padding: 11px 12px;
+    margin-bottom: 10px;
+  }
+
+  .signup-form button {
+    padding: 11px;
+    margin-top: 6px;
+  }
+
+  .login-link {
+    margin-top: 10px;
+    font-size: 0.88rem;
+  }
 }
 .form-social-wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 36px;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.divider-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 72px;
+  width: auto;
+  color: #c7d1dc;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.divider-horizontal::before,
+.divider-horizontal::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(221, 230, 243, 0.55);
 }
 
 /* Vertical "OR" divider WITH lines above/below */
@@ -415,6 +500,7 @@ body.login-bg {
   gap: 16px;
   align-items: center;
   justify-content: center;
+  flex: 0 0 48px;
 }
 
 .social-btns button {
@@ -451,6 +537,19 @@ body.login-bg {
 
 .instagram-btn {
   background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 50%, #d6249f 80%, #285AEB 100%);
+}
+
+@media (max-width: 900px) {
+  .divider-horizontal {
+    flex: none;
+    margin: 2px 0;
+  }
+
+  .social-btns {
+    flex: none;
+    flex-direction: row;
+    gap: 16px;
+  }
 }
 
 

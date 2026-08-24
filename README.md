@@ -155,21 +155,4 @@ The app exposes the following main pages and endpoints:
    ```
 6. Open `http://localhost:5000`.
 
-## Security and production notes
 
-- Passwords are stored in plain text. In production, use a secure password hashing library such as `bcrypt`.
-- The app stores API credentials in `.env`; do not commit `.env` to source control.
-- The pharmacy locator is static and not a real-location service.
-- Google Gemini usage requires a valid API key and may incur costs.
-
-## Extension guidelines
-
-- Add password hashing and user account security
-- Replace static pharmacy data with a real lookup API
-- Add appointment management and user dashboards
-- Improve chatbot prompt handling and conversation context
-- Add validation to forms in both backend and frontend
-
-## Author
-
-Tanmay Nag

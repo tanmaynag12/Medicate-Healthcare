@@ -7,9 +7,11 @@
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/logo.png') }}">
   <title>Medicate - Book_Appointments</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='booking.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='shared.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<header class="header">
+{% include 'partials/shared_nav.html' %}
+{% if false %}<header class="header">
   <div class="container">
     <div class="nav-brand">
       <div class="logo">
@@ -57,7 +59,7 @@
       <span></span>
     </div>
   </div>
-</header>
+</header>{% endif %}
 <div class="contact-hero"
   style="background: url('{{ url_for('static', filename='bg-booking.jpg') }}') no-repeat center center/cover;">
   <h1>Book an Appointment</h1>
@@ -130,7 +132,8 @@
     </form>
   </div>
 </div>
-<footer class="footer">
+{% include 'partials/shared_footer.html' %}
+{% if false %}<footer class="footer">
   <div class="footer-bg">
     <div class="footer-pattern"></div>
   </div>
@@ -194,15 +197,10 @@
       <div class="footer-divider"></div>
       <div class="footer-bottom-content">
         <p>&copy; 2024 Medicate. All rights reserved.</p>
-        <div class="footer-badges">
-          <span class="badge">HIPAA Compliant</span>
-          <span class="badge">ISO 27001</span>
-          <span class="badge">SOC 2</span>
-        </div>
       </div>
     </div>
   </div>
-</footer>
+</footer>{% endif %}
 <script src="{{ url_for('static', filename='homepage.js') }}"></script>
 
 </body>

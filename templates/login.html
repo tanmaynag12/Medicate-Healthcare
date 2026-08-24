@@ -6,18 +6,23 @@
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/logo.png') }}">
   <title>Login - Medicate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 
 <body>
   <div class="login-container">
+    <div class="login-intro">
+      <h1>Welcome back!!</h1>
+      <p>Sign in to your account</p>
+    </div>
     <div class="login-box">
       <div class="logo">
         <img src="{{ url_for('static', filename='icons/logo.png') }}" alt="Medicate Logo">
       </div>
 
-      <h2>Welcome back!!</h2>
-      <p class="subtitle">sign in to your account</p>
+      <h2 class="login-heading">Welcome back!!</h2>
+      <p class="subtitle login-subtitle">sign in to your account</p>
 
       <form action="/login" method="post">
         <label>Email</label>
@@ -27,27 +32,28 @@
           <label>Password</label>
         </div>
         <input type="password" placeholder="Enter your password" name="password" required>
-        <a href="#" class="forgot-link">Forgot Password?</a>
+        <a href="{{ url_for('signup') }}" class="forgot-link">Forgot Password?</a>
 
         <button type="submit" class="login-btn">Log in</button>
       </form>
 
+      <p class="account-link">Don't have an account? <a href="/signup">Click here to signup</a></p>
       <div class="divider">OR</div>
       <div class="social-btns">
-        <button class="google-btn">
+        <button type="button" class="google-btn" onclick="window.location.href='https://www.google.com'">
           <img src="{{ url_for('static', filename='icons/google.svg') }}" alt="Google">
           Continue with Google
         </button>
-        <button class="facebook-btn">
+        <button type="button" class="facebook-btn" onclick="window.location.href='https://www.facebook.com'">
           <img src="{{ url_for('static', filename='icons/facebook.svg') }}" alt="Facebook">
           Continue with Facebook
-          <button class="instagram-btn">
-            <img src="{{ url_for('static', filename='icons/instagram.svg') }}" alt="Instagram">
-            Continue with Instagram
-          </button>
+        </button>
+        <button type="button" class="instagram-btn" onclick="window.location.href='https://www.instagram.com'">
+          <img src="{{ url_for('static', filename='icons/instagram.svg') }}" alt="Instagram">
+          Continue with Instagram
+        </button>
       </div>
     </div>
-  </div>
   </div>
 </body>
 

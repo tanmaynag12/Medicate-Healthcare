@@ -1,4 +1,3 @@
-/* Import Google Fonts (if you didn't add it in HTML) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 
@@ -7,22 +6,27 @@ body {
     padding: 0;
     font-family: 'Inter', sans-serif; 
     background: #10152B;
+    background-attachment: fixed;
     color: #E0E6F0; 
-    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
     display: flex;
-    justify-content: center;
-    align-items: flex-start; 
-    overflow-x: hidden; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
 }
 
 .main-wrapper {
     width: 100%;
     max-width: 1200px; 
+    min-height: 0;
     padding: 0 20px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 
@@ -33,7 +37,7 @@ body {
     align-items: center;
     padding: 25px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    margin-bottom: 50px; 
+    margin-bottom: 30px; 
 }
 
 .nav-logo .logo-text {
@@ -102,8 +106,8 @@ body {
 
 .hero-section {
     text-align: center;
-    margin-bottom: 80px; 
-    padding-top: 50px; 
+    margin-bottom: 35px; 
+    padding-top: 25px; 
 }
 
 .hero-section h1 {
@@ -132,7 +136,7 @@ body {
     color: #fff;
     padding: 15px 30px;
     border-radius: 8px;
-    font-size: 1.05em;
+    font-size: 0.9em;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -158,8 +162,9 @@ body {
     display: flex;
     flex-direction: column;
     position: relative; 
-    height: 700px; 
-    margin-bottom: 100px; 
+    height: min(700px, calc(100dvh - 280px));
+    min-height: 420px;
+    margin-bottom: 20px; 
 }
 
 
@@ -167,6 +172,8 @@ body {
     width: 100%;
     max-width: none; 
     height: 100%; 
+    flex: 1 1 auto;
+    min-height: 0;
     background: transparent; 
     border-radius: 0; 
     box-shadow: none; 
@@ -255,8 +262,10 @@ body {
 
 .chat-box {
     flex-grow: 1;
+    min-height: 0;
     padding: 25px 30px; /* More padding */
     overflow-y: auto;
+    overscroll-behavior: contain;
     background-color: transparent;
     display: flex;
     flex-direction: column;
@@ -464,84 +473,225 @@ body {
 
 
 @media (max-width: 768px) {
+    body {
+        min-height: 100dvh;
+        overflow-x: hidden;
+    }
+
+    .main-wrapper {
+        height: auto;
+        min-height: calc(100dvh - 60px);
+        padding: 0 14px;
+        padding-bottom: 0;
+    }
+
     .navbar {
-        flex-direction: column;
-        gap: 20px;
-        padding-bottom: 15px;
+        padding: 16px 0;
+        margin-bottom: 10px;
+    }
+
+    .nav-logo .logo-text {
+        font-size: 1.5em;
     }
     .nav-links {
         gap: 20px;
-    }
-    .hero-section h1 {
-        font-size: 2.5em;
-    }
-    .hero-section p {
-        font-size: 0.9em;
-    }
-    .chat-main-area {
-        height: 80vh; 
-        width: 95%;
-    }
-    .chat-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .clear-chat-btn {
-        align-self: flex-end; 
-    }
-    .message {
-        max-width: 90%;
-    }
-    .input-area {
-        padding: 15px 20px;
-    }
-}
-
-
-@media (max-width: 480px) {
-    .navbar {
-        padding: 15px 0;
-    }
-    .nav-links {
-        display: none; 
     }
     .hero-section {
-        margin-bottom: 40px;
+        margin-bottom: 16px;
+        padding-top: 12px;
     }
     .hero-section h1 {
         font-size: 2em;
     }
     .hero-section p {
-        font-size: 0.8em;
+        font-size: 0.9em;
+    }
+    .try-demo-btn {
+        padding: 10px 20px;
+        font-size: 0.85em;
+        max-width: 92%;
+        white-space: normal;
     }
     .chat-main-area {
-        height: 75vh;
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 420px;
+        width: 100%;
+        max-width: 600px;
+        margin-bottom: 10px;
+    }
+    .chat-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 18px;
+    }
+
+    .chat-header > .header-actions {
+        width: 100%;
+        flex-direction: row;
+        gap: 8px;
+        margin-left: 0;
+        align-items: stretch;
+    }
+
+    .chat-header button {
+        flex: 1;
+        padding: 8px 10px;
+    }
+
+    .chat-box {
+        min-height: 0;
+        padding: 16px 14px;
+        gap: 12px;
+    }
+
+    .message {
+        max-width: 100%;
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .quick-replies {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .quick-reply-btn {
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+        padding: 10px 8px;
+    }
+
+    .input-area {
+        padding: 12px 14px;
+    }
+
+    .footer {
+        margin-top: 24px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 30px 0 20px;
+    }
+
+    .footer-links {
+        gap: 16px;
+    }
+
+    #user-input {
+        min-width: 0;
+        margin-right: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-wrapper {
+        padding: 0 10px;
+    }
+
+    .navbar {
+        padding: 12px 0;
+        margin-bottom: 10px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero-section {
+        margin-bottom: 12px;
+        padding-top: 8px;
+    }
+
+    .hero-section h1 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+
+    .try-demo-btn {
+        padding: 9px 16px;
+        font-size: 0.8em;
+        max-width: 90%;
+        white-space: normal;
+    }
+
+    .hero-section p {
+        font-size: 0.8em;
+    }
+
+    .chat-main-area {
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 400px;
         border-radius: 15px;
     }
+
     .chat-header h2 {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
+
     .chat-header p {
         font-size: 0.75em;
     }
+
+    .chat-header {
+        padding: 13px 14px;
+    }
+
+    .chat-header button {
+        font-size: 0.78em;
+        padding: 7px 8px;
+    }
+
+    .chat-box {
+        padding: 12px 10px;
+        gap: 10px;
+    }
+
+    .quick-replies {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        margin-top: 10px;
+    }
+
+    .quick-reply-btn {
+        font-size: 0.78em;
+        padding: 8px 6px;
+        text-align: center;
+        white-space: normal;
+    }
+
     .message {
         font-size: 0.85em;
     }
-    .quick-reply-btn {
-        font-size: 0.8em;
-        padding: 8px 12px;
-    }
+
     #user-input {
         padding: 10px 15px;
     }
+
     .send-btn {
         width: 40px;
         height: 40px;
     }
+
     .send-btn img {
         width: 20px;
         height: 20px;
+    }
+
+    .history-panel {
+        top: 68px;
+        left: 10px;
+        right: 10px;
+        width: auto;
+        max-height: 60vh;
     }
 }
 :root {
@@ -683,4 +833,226 @@ body {
     font-size: 0.85em;
     color: #888;
     text-align: center;
+}
+
+.footer {
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: 36px;
+    background: #1d293d;
+    color: #e0e6f0;
+}
+
+.footer > .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) 2fr;
+    gap: 60px;
+    padding: 42px 0 26px;
+}
+
+.footer .nav-brand {
+    align-self: start;
+}
+
+.footer .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer .logo-icon,
+.footer .brand-logo {
+    width: 40px;
+    height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.footer .brand-logo {
+    object-fit: contain;
+}
+
+.footer .logo-text {
+    color: #00bfff;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.footer-description {
+    max-width: 300px;
+    margin: 10px 0;
+    color: #b0bac8;
+    line-height: 1.5;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.social-link {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dbe4f0;
+    background: rgba(10, 18, 34, 0.6);
+    border-radius: 8px;
+}
+
+.social-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.footer-column h4 {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.footer-column a {
+    display: block;
+    margin-bottom: 8px;
+    color: #b0bac8;
+    font-size: 0.88rem;
+    text-decoration: none;
+}
+
+.footer-column a:hover {
+    color: #00bfff;
+}
+
+.footer-bottom {
+    padding: 18px 0 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #9aa8bb;
+    font-size: 0.85rem;
+}
+
+.simple-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: rgba(16, 21, 43, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+}
+
+.simple-nav-brand {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.simple-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.simple-nav-link {
+    color: #A0A9B8;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95em;
+    transition: color 0.2s ease;
+}
+
+.simple-nav-link:hover {
+    color: #fff;
+}
+
+.footer-content {
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    padding: 80px 0 40px;
+}
+
+.footer-links {
+    gap: 40px;
+}
+
+.footer-column h4 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.footer-column a {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.footer-bottom {
+    padding: 40px 0;
+}
+
+@media (max-width: 768px) {
+    .simple-nav {
+        padding: 14px 18px;
+    }
+
+    .simple-nav-brand {
+        font-size: 1.1rem;
+    }
+
+    .simple-nav-actions {
+        gap: 14px;
+    }
+
+    .simple-nav-link {
+        font-size: 0.85em;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        padding: 30px 0 20px;
+    }
+
+    .footer-links {
+        gap: 16px;
+    }
+
+    .footer-column h4 {
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .footer-column a {
+        margin-bottom: 6px;
+        font-size: 13px;
+    }
+
+    .footer-bottom {
+        padding: 18px 0 22px;
+    }
 }

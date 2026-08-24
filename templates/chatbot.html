@@ -5,25 +5,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medicate Chatbot</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}?v=6" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <div class="main-wrapper">
-    <nav class="navbar">
-      <div class="nav-logo">
-        <span class="logo-text">MEDICATE</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">Pricing</a></li>
-      </ul>
-    </nav>
+<body class="chatbot-page">
+  <nav class="simple-nav">
+    <a href="{{ url_for('home') }}" class="simple-nav-brand">Medicate</a>
+    <div class="simple-nav-actions">
+      <a href="{{ url_for('home') }}" class="simple-nav-link">Home</a>
+      {% if username and username != 'Guest' %}
+      <a href="{{ url_for('logout') }}" class="simple-nav-link">Logout</a>
+      {% else %}
+      <a href="{{ url_for('login') }}" class="simple-nav-link">Login</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <main class="main-wrapper">
     <header class="hero-section">
-      <h1>Chat with <span class="highlight">AI</span></h1>
-      <button class="try-demo-btn">Try With Demo</button>
+      <button class="try-demo-btn">Click here to upgrade your plan</button>
     </header>
 
     <div class="chat-main-area">
@@ -39,7 +40,6 @@
           </div>
         </div>
 
-       
         <div class="history-panel" id="history-panel">
           <div class="history-panel-header">
             <span>Past Messages</span>
@@ -57,12 +57,14 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
+  {% include 'partials/shared_footer.html' %}
 
   <script>
     window.username = "{{ username }}";
   </script>
   <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+  <script src="{{ url_for('static', filename='homepage.js') }}"></script>
 </body>
 
 </html>

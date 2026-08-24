@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/logo.png') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='pharmacy.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='shared.css') }}">
   <title>MEDICATE - Locator</title>
 </head>
 
 <body>
-  <header class="header">
+  {% include 'partials/shared_nav.html' %}
+  {% if false %}<header class="header">
     <div class="container">
       <div class="nav-brand">
         <div class="logo">
@@ -57,7 +59,7 @@
         <span></span>
       </div>
     </div>
-  </header>
+  </header>{% endif %}
   <div class="pharmacy-hero">
     <img src="{{ url_for('static', filename='pharmacy-bg.jpg') }}" alt="Pharmacy Locator Background"
       class="hero-background-image">
@@ -119,7 +121,8 @@
     </div>
   </div>
   </div>
-  <footer class="footer">
+  {% include 'partials/shared_footer.html' %}
+  {% if false %}<footer class="footer">
     <div class="footer-bg">
       <div class="footer-pattern"></div>
     </div>
@@ -181,15 +184,10 @@
         <div class="footer-divider"></div>
         <div class="footer-bottom-content">
           <p>&copy; 2024 Medicate. All rights reserved.</p>
-          <div class="footer-badges">
-            <span class="badge">HIPAA Compliant</span>
-            <span class="badge">ISO 27001</span>
-            <span class="badge">SOC 2</span>
-          </div>
         </div>
       </div>
     </div>
-  </footer>
+  </footer>{% endif %}
   <script src="{{ url_for('static', filename='pharamcy_locator.js') }}"></script>
   <script SRC="{{ url_for('static', filename='homepage.js') }}"></script>
 </body>

@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at center, #0f0f1b, #0b0b14);
+  background: linear-gradient(135deg, #071a2b 0%, #0b3440 55%, #111827 100%);
   height: 100vh;
   display: flex;
   align-items: center;
@@ -15,15 +15,19 @@ body {
   padding: 20px;
 }
 
+.login-intro {
+  display: none;
+}
+
 .login-box {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 22px;
   padding: 30px;
-  box-shadow: 0 0 30px #7e4fff66;
+  box-shadow: 0 10px 36px 0 rgba(49,168,226,0.22);
   backdrop-filter: blur(15px);
   text-align: center;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.20);
 }
 
 .logo {
@@ -53,6 +57,7 @@ label {
 }
 
 input {
+  box-sizing: border-box;
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
@@ -97,6 +102,17 @@ input::placeholder {
   opacity: 0.9;
 }
 
+.account-link {
+  margin: 16px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.account-link a {
+  color: #ffffff;
+  font-weight: 600;
+}
+
 .divider {
   margin: 20px 0;
   color: #aaa;
@@ -105,6 +121,7 @@ input::placeholder {
 }
 
 .social-btns button {
+  box-sizing: border-box;
   width: 100%;
   padding: 10px;
   margin-top: 10px;
@@ -153,6 +170,122 @@ input::placeholder {
   width: 64px;       /* Adjust to 100px or 120px if needed */
   height: auto;
   margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  body {
+    min-height: 100dvh;
+    padding: 12px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .login-container {
+    padding: 0;
+    width: 97vw;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1.5px solid rgba(255, 255, 255, 0.20);
+    border-radius: 22px;
+    box-shadow: 0 10px 36px 0 rgba(49,168,226,0.22);
+  }
+
+  .login-intro {
+    display: block;
+    padding: 20px 22px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+    color: #ffffff;
+    text-align: left;
+  }
+
+  .login-intro h1 {
+    margin: 0 0 8px;
+    font-size: 1.7rem;
+  }
+
+  .login-intro p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: rgba(182, 182, 182, 0.9);
+  }
+
+  .login-box {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px 22px 18px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .login-heading,
+  .login-subtitle {
+    display: none;
+  }
+
+  .logo {
+    margin-bottom: 4px;
+  }
+
+  .logo img {
+    width: 50px;
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    margin: 6px 0 3px;
+    font-size: 1.35rem;
+  }
+
+  .subtitle {
+    margin-bottom: 12px;
+  }
+
+  label {
+    font-size: 0.82rem;
+    margin-bottom: 3px;
+  }
+
+  input {
+    padding: 9px 10px;
+    margin-bottom: 9px;
+    font-size: 0.88rem;
+  }
+
+  .forgot-link {
+    right: 0;
+    top: -8px;
+  }
+
+  .login-btn {
+    padding: 9px;
+  }
+
+  .account-link {
+    margin-top: 10px;
+    font-size: 0.86rem;
+    text-align: center;
+  }
+
+  .divider {
+    margin: 9px 0 6px;
+  }
+
+  .social-btns button {
+    width: 48px;
+    height: 48px;
+    padding: 7px;
+    margin-top: 5px;
+    font-size: 0;
+  }
+
+  .social-btns button img {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 
